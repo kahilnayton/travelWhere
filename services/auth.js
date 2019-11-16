@@ -25,7 +25,7 @@ const checkPassword = async (password, password_digest) => {
   return await bcrypt.compare(password, password_digest);
 };
 
-const getToken = (data) => {
+const genToken = (data) => {
   const token = jwt.sign(data, TOKEN_KEY);
   return token;
 };

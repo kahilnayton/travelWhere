@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize({
-  database: 'TravelKit',
+  database: 'travelWhereDb',
   dialect: 'postgres',
   define: {
     underscored: true
@@ -21,7 +21,7 @@ User.init({
   modelName: 'user'
 })
 
-class LocationList extends Sequelize.Model{ }
+class TripList extends Sequelize.Model{ }
 
 TripList.init({
   title: Sequelize.STRING,
@@ -46,10 +46,10 @@ Location.init({
     modelName: 'location'
   })
 
-User.hasMany(TravelList, { onDelete: 'cascade' });
-TravelList.belongsTo(User);
-TravelList.hasMany(Location, { onDelete: 'cascade' })
-Location.belongsTo(TravelList);
+User.hasMany(TripList, { onDelete: 'cascade' });
+TripList.belongsTo(User);
+TripList.hasMany(Location, { onDelete: 'cascade' })
+Location.belongsTo(TripList);
 
 module.exports = {
   User,
