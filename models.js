@@ -21,9 +21,9 @@ User.init({
   modelName: 'user'
 })
 
-class TravelList extends Sequelize.Model{ }
+class LocationList extends Sequelize.Model{ }
 
-TravelList.init({
+TripList.init({
   title: Sequelize.STRING,
   description: Sequelize.STRING,
   image_link: Sequelize.TEXT,
@@ -36,10 +36,10 @@ TravelList.init({
 class Location extends Sequelize.Model { }
   
 Location.init({
-  country: Sequelize.STRING,
-  description: Sequelize.TEXT,
+  place: Sequelize.STRING,
+  address: Sequelize.TEXT,
+  travel_date: Sequelize.DATE,
   image_link: Sequelize.TEXT,
-  location: Sequelize.TEXT,
 },
   {
     sequelize,
@@ -53,7 +53,7 @@ Location.belongsTo(TravelList);
 
 module.exports = {
   User,
-  TravelList,
+  TripList,
   Location,
   sequelize
 }
