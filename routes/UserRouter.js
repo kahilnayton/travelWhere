@@ -5,7 +5,7 @@ const { restrict } = require('../services/auth');
 
 const userRouter = Router();
 
-const buildAuthRouter = (user) => {
+const buildAuthResponse = (user) => {
   const userData = {
     username: user.username,
     id: user.id,
@@ -19,17 +19,18 @@ const buildAuthRouter = (user) => {
   };
 };
 
-userRouter.post('./register', async (req, res, next) => {
+userRouter.post('/register', async (req, res, next) => {
   try {
     const password_digest = await hashPassword(req.body.password);
     const { username } = req.body;
+    console.log(username)
 
     const user = await User.create({
       username,
-      checkPassword
+      password_digest,
     });
 
-    const respData = buildAuthResp(user);
+    const respData = buildAuthResponse(user);
     console.log(`Returning registered user ${JSON.stringify(respData)}`);
     res.json(respData);
   } catch (e) {
@@ -44,10 +45,10 @@ userRouter.post('/login', async (req, res, next) => {
         username: req.body.username,
       },
     });
-    if (await checkAuthResp(req.body.password, user.password_digest)) {
-      const respData = buildAuthResp(user);
+    if (await checkPassword(req.body.password, user.password_digest)) {
+      const respData = buildAuthResponse(user);
 
-      res.json(resData);
+      res.json(respData);
     } else {
       res.status(401).send('Invalid Credentials');
     }
@@ -56,7 +57,7 @@ userRouter.post('/login', async (req, res, next) => {
   }
 });
 
-userRouter.get('./verify', restrict, (req, res) => {
+userRouter.get('/verify', restrict, (req, res) => {
   const user = res.locals.user;
   res.json(user);
 });

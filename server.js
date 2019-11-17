@@ -24,9 +24,9 @@ app.use((err, req, res, next) => {
 })
 
 // Router handler
-app.use('/tripList', TripListRouter);
-app.use('/tripList/:tripListId/location', LocationsRouter);
-app.use('/user/:userId/tripList/', TripListRouter);
+app.use('/tripLists', TripListRouter);
+app.use('/tripLists/:tripListId/locations', LocationsRouter);
+app.use('/users/:userId/tripLists/', TripListRouter);
 
 app.listen(PORT, () => {
   console.log(`Express server listening on port${PORT}`);

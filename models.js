@@ -31,14 +31,15 @@ TripList.init({
 },
   {
     sequelize,
-    modelName: 'travelList'
+    modelName: 'triplist'
   })
 class Location extends Sequelize.Model { }
   
 Location.init({
   place: Sequelize.STRING,
   address: Sequelize.TEXT,
-  travel_date: Sequelize.DATE,
+  departure_date: Sequelize.DATE,
+  return_date: Sequelize.DATE,
   image_link: Sequelize.TEXT,
 },
   {

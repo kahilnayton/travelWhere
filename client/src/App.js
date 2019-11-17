@@ -9,6 +9,7 @@ import CreateTripListForm from './components/CreateTripListForm';
 import TripListDetails from './components/TripDetails';
 import UpdateTripListForm from './components/UpdateTripListForm';
 import RegisterForm from './components/RegisterForm';
+import LoginForm from './components/LoginForm';
 import Home from './components/Home';
 
 
@@ -22,15 +23,35 @@ class App extends React.Component {
       title: '',
       description: '',
       image_link: '',
-      date: ''
+      travel_date: ''
     }
   }
 
   componentDidMount = async () => {
     console.log('component did mount');
-    // await this.handleVerify();
-    // await this.getTripList();
+    await this.handleVerify();
+    await this.getTripLists();
+    console.log(this.state)
   }
+
+  // Get trip lists 
+  getTripLists = async () => {
+
+    if (this.state.currentUser) {
+      const tripLists = await getTripListsByUser(this.state.currentUser.id);
+      this.setState({ tripLists })
+    }
+    else {
+      this.setState({ tripLists: [] })
+    }
+  }
+
+  handleVerify = async () => {
+    const currentUser = await verifyUser();
+    if (currentUser)
+      this.setState({ currentUser });
+  }
+
 
   handleLogin = async (loginData) => {
     const currentUser = await loginUser(loginData);
@@ -39,7 +60,7 @@ class App extends React.Component {
     }
     else {
       this.setState({ currentUser });
-      await this.getTripList();
+      await this.getTripLists();
       this.props.history.push('./');
     }
   }
@@ -63,20 +84,8 @@ class App extends React.Component {
         tripLists: []
       });
     }
-    handleVerify = async () => {
-      const currentUser = await verifyUser();
-      if (currentUser)
-        this.setState({ currentUser });
-    }
-    getTripLists = async () => {
-      if (this.state.currentUser) {
-        const tripLists = await getTripListsByUser(this.state.currentUser.id);
-        this.setState({ tripLists })
-      }
-      else {
-        this.setState({ tripLists: [] })
-      }
-    }
+    
+  
     // Handle Change
     handleChange = (e) => {
       const { name, value } = e.target;
@@ -120,10 +129,10 @@ class App extends React.Component {
 
 
     render() {
-      const { currentUser } = this.state;
+      const { currentUser, tripLists } = this.state;
       return (
         <div className="app">
-          <h2>My travel app</h2>
+          <h2></h2>
           <Header 
             currentUser={currentUser}
             handleLogout={this.handleLogout}
@@ -131,8 +140,16 @@ class App extends React.Component {
           <Route path='/login' render={() => (
             <Home
               currentUser={currentUser}
-              tripList={this.state.tripLists}
+              tripLists={this.state.tripLists}
             />)} />
+          
+          <Route exact path='/' render={() => (
+            <LoginForm
+              handleLogin={this.handleLogin}
+              tripLists={this.state.tripLists}
+            />
+          )}/>
+          
           <Route path='/register' render={() => (
             <RegisterForm
               handleRegister={this.handleRegister}
@@ -152,7 +169,7 @@ class App extends React.Component {
           <Route path='/create_tripLists' render={() => (
             <CreateTripListForm
               createTripList={this.createTripList}
-              handleChnage={this.createTripList}
+              handleChange={this.createTripList}
               currentUser={currentUser}
               tripListFormData={this.state.tripListFormData}
             />

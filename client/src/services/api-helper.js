@@ -26,10 +26,11 @@ export const loginUser = async (loginData) => {
     return { error: 'Invalid credentials'}
   }
 }
+// Verify 
 export const verifyUser = async () => {
   const token = localStorage.authToken;
   if (token) {
-    api.default.headers.common.authorization = `Bearer ${token}`;
+    api.defaults.headers.common.authorization = `Bearer ${token}`;
     const resp = await api.get('/auth/verify');
     return resp.data;
   }
@@ -38,7 +39,7 @@ export const verifyUser = async () => {
 
 // Trip List  - get all lists
 
-export const getListsByUser = async (userId) => {
+export const getTripListsByUser = async (userId) => {
   try {
     const resp = await api.get(`/triplists/${userId}/`);
     return resp.data.triplists;
@@ -49,9 +50,9 @@ export const getListsByUser = async (userId) => {
 }
     
 // Create Trip List 
-export const getTripListsByUser = async (userId, tripListData) => {
-  const resp = await api.post(`/user/${userId}/triplists`, tripListData)
-  return resp.data.tripList
+export const postGiftList = async (userId, tripListData) => {
+  const resp = await api.post(`/users/${userId}/triplists`, tripListData)
+  return resp.data.triplists
 }
 
 export const postTripList = async (id) => {

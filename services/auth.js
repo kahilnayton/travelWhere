@@ -1,16 +1,15 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const SALT_ROUNDS = 10;
-const TOKEN_KEY = 'nancy';
+const SALT_ROUNDS = 11;
+const TOKEN_KEY = 'mosquito fossil';
 
 const restrict = (req, res, next) => {
   try {
-    const token = req.header.authorization.split(" ")[1];
+    const token = req.headers.authorization.split(" ")[1];
     const data = jwt.verify(token, TOKEN_KEY);
     res.locals.user = data;
     next();
-
   } catch (e) {
     console.log(e);
     res.status(403).send('Unorthorized');
