@@ -2,6 +2,15 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Route, withRouter } from 'react-router-dom';
+import { registerUser, loginUser, verifyUser, getTripListsByUser, postTripList, putTripList, deleteTripList } from './services/api-helper';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import CreateTripListForm from './components/CreateTripListForm';
+import TripListDetails from './components/TripDetails';
+import UpdateTripListForm from './components/UpdateTripListForm';
+import RegisterForm from './components/RegisterForm';
+import Home from './components/Home';
+
 
 
 class App extends React.Component {
@@ -19,8 +28,8 @@ class App extends React.Component {
 
   componentDidMount = async () => {
     console.log('component did mount');
-    await this.handleVerify();
-    await this.getTripList();
+    // await this.handleVerify();
+    // await this.getTripList();
   }
 
   handleLogin = async (loginData) => {
@@ -30,31 +39,28 @@ class App extends React.Component {
     }
     else {
       this.setState({ currentUser });
-      await thisgetTripList();
+      await this.getTripList();
       this.props.history.push('./');
     }
   }
   handleRegister = async (registerData) => {
     const currentUser = await registerUser(registerData);
-    if (cuurnetUser.error) {
-      this.setState({ authErrorMessage: currentUsrt.errir });
+    if (currentUser.error) {
+      this.setState({ authErrorMessage: currentUser.error });
     }
     else {
       this.setState({ currentUser });
-      localStorage.removeItem('authToken');
-      this.setState({
-        currentUSer: null,
-        authErrorMessage: '',
-        tripList: []
-      });
+      this.props.history.push('./');
     }
+  }
+
     handleLogout = () => {
       this.setState({ currentUser: null });
       localStorage.removeItem('authToken')
       this.setState({
         currentUser: null,
         authErrorMessage: '',
-        treipLists: []
+        tripLists: []
       });
     }
     handleVerify = async () => {
@@ -84,14 +90,12 @@ class App extends React.Component {
     ///
 
     // Create trip list
-
     createTripList = async (userId) => {
-      const newTripList = await post / tripList(userId, this.state.tripListFormData);
+      const newTripList = await postTripList(userId, this.state.tripListFormData);
       this.setState(prevState => ({
-        tripList: prevState.tripLists.map(tripList =>
-          tripList.id === parseInt(id) ? newTripList : triplist)
+        tripList: [...prevState.tripLists, newTripList] 
       }))
-      this.props.history.push('../')
+      this.props.history.push('./');
     }
 
     // Update trip list
@@ -99,7 +103,7 @@ class App extends React.Component {
       const newTripList = await putTripList(id, triplist);
       this.setState(prevState => ({
         tripList: prevState.tripLists.map(triplist =>
-          triplist.id === parseInt(id) ? newTripLists : triplist)
+          triplist.id === parseInt(id) ? newTripList : triplist)
       }))
       this.props.history.push('../')
     }
@@ -114,12 +118,12 @@ class App extends React.Component {
       this.props.history.push('../')
     }
 
-  }
 
     render() {
       const { currentUser } = this.state;
       return (
         <div className="app">
+          <h2>My travel app</h2>
           <Header 
             currentUser={currentUser}
             handleLogout={this.handleLogout}
