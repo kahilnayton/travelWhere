@@ -1,31 +1,34 @@
 import React from 'react';
-import CreateTripForm from './CreateTripForm';
-import UpdateTripForm from './UpdateTripForm';
-import { getTripsByTripList, postTrip, putTrip, deleteTrip } from '../services/api-helper';
+import CreateLocationForm from './CreateLocationForm';
+import UpdateLocationForm from './UpdateLocationForm';
+import { getLocationsByTripList, postLocation, putLocation, deleteLocation } from '../services/api-helper';
 import { Link, Route, withRouter } from 'react-router-dom';
+import travelIcon from '../images/travelIcon.png';
+import editIcon from '../images/editIcon.png';
+import deleteIcon from '../images/deleteIcon.png';
 import moment from 'moment';
-import TripDetails from './TripDetails';
+import LocationDetails from './LocationDetails';
 
 class TripListDetails extends React.Component {
   state = {
     trips: [],
     updateTrips: [],
     tripFormData: {
-      item: '',
-      description: '',
-      image_link: '',
-      price: '',
-      location: '',
-      start_date: '',
-      finish_date: ''
+      place: '',
+      address: '',
+      departure_date: '',
+      return_date: '',
+      image_link: ''
     },
     show: false,
     showUpdate: false,
-    showTripDet: false,
+    showTripDetails: false,
     selectedTrip: 0
   }
+  
   async componentDidMount() {
-    await this.getGifts();
+    await this.getLocations();
+    console.log(props)
   }
 
   showModal = () => {
@@ -51,14 +54,15 @@ class TripListDetails extends React.Component {
     this.setState({ showTripDet: false })
   };
 
-  // Get Trips
-  getTrips = async () => {
+  // Get Locations
+  getLocations = async () => {
+    debugger;
     if (this.props.currentTripList) {
-      const trips = await getTripsByTripList(this.props.currentTripList.id);
-      this.setState({ trips })
+      const locations = await getLocationsByTripList(this.props.currentTripList.id);
+      this.setState({ locations })
     }
     else {
-      this.setState({ trips: [] })
+      this.setState({ locations: [] })
     }
   }
 
@@ -73,41 +77,110 @@ class TripListDetails extends React.Component {
     }))
   }
 
-  // Create Trip 
-  createTrip = async (id, data) => {
-    const newTrip = await putTrip(id, data);
+  // Create Location
+  createLocation = async (id, data) => {
+    const newLocation = await putLocation(id, data);
     this.setState(prevState => ({
-      trips: prevState.trips.map(trip => {
-        trip.id === parseInt(id) ? newTrip : trip)
+      locations: prevState.locations.map(trip => {
+        location.id === parseInt(id) ? newLocation : location)
     }))
   }
-  // Update Trip 
-  updateTrip = async (id, data) => {
-    const newTrip = await putTrip(id, data);
+  // Update Location 
+  updateLocation = async (id, data) => {
+    const newLocation = await putLocation(id, data);
     this.setState(prevState => ({
-      trips: prevState.trips.map(trip => {
-        trip.id === parseInd(id) ? newTrip : trip)
+      locations: prevState.locations.map(trip => {
+        location.id === parseInd(id) ? newLocations : location)
     }))
   }
-  deleteTrip = async (id) => {
-    await deleteTrip(id);
+  // Delete a location 
+  deleteLocation = async (id) => {
+    await deleteLocation(id);
     this.setState(prevState => ({
-      trips: prevState.trips.filter(trip => {
-        return trip.id !== id
+      locations: prevState.locations.filter(location => {
+        return location.id !== id
       })
     }))
   }
 
   render() {
     const { currentTripList } = this.props;
-    const { trips } = this.state;
+    const { locations } = this.state;
+    console.log(this.state, 'trip list details');
 
     return (
       <div className='main'>
-        Trip List details
+        {currentTripList ?
+          <div id='trip-list-details'>
+            <div id='triplist'>
+              <h2>{currentTripList.title}</h2>
+              <img
+                className='triplist-image'
+                src={currentTripList.image_link}
+                alt="my-list"
+              />
+              <p>{currentTripList.description}</p>
+              <h4>Travel Date: {moment(new Date(currentTripList.travel_date)).format('MM/DD/YYYY')}</h4>
+              <CreateTripForm
+                show={this.state.show}
+                handleClose={this.hideModal}
+                createLocation={this.createLocation}
+                handleChange={this.handleChange}
+                tripFormData={this.state.tripFormData}
+                currentTripList={currentTripList}
+              />
+              <div className='image-container'>
+                <img className='action-image' src={travelIcon} onClick={this.showModal} alt="edit" />
+                <Link to={`/update_tripList/${currentTripList.id}`}>
+                  <img className='action-image' src={editIcon} alt="edit" />
+                </Link>
+                <img className='action-image' src={deleteIcon} alt="delete" onClick={() => {
+                  this.props.deleteTripList(currentTripList.id)
+                }} />
+
+              </div>
+            </div>
+
+            <div id='locations-container'>
+              {
+                locations.map(location => (
+                  <div className='location'>
+                    <img className='location-image' src={location.image_link} alt="location-image" />
+                    <div className='location-details'>
+                      <LocationDetails
+                        location={locations}
+                        selectedLocation={this.state.selectedLocation}
+                        show={this.state.showLocationDetails}
+                      />
+                      <h2>[location.place}</h2>
+                      <div id='trip-button-group'>
+                        <button className='three-buttons' type='button' onClick={() =>
+                          this.showModalUpdate(location.id)}>Update Location</button>
+                        <button className='three-buttons' type='button' onClick={() =>
+                          this.showLocationDetails(location.id)}>View Location</button>
+                        <UpdateLocationForm
+                          locations={this.state.locations}
+                          locationId={location.id}
+                          show={this.state.showUpdate}
+                          hanldeClose={this.handleModalUpdate}
+                          updateLocation={this.updateLocation}
+                          locationFormData={this.state.locationFormData}
+                          selectedLocation={this.state.selectedLocation}
+                        />
+                        <button className='three-buttons' type='button' onClick={() => { this.deleteLocation(location.id) }}>
+                          Delete Location
+                      </button>
+
+                      </div>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+          : <></>}
       </div>
     )
   }
-
 }
 export default withRouter(TripListDetails);

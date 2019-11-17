@@ -6,7 +6,7 @@ import { registerUser, loginUser, verifyUser, getTripListsByUser, postTripList, 
 import Header from './components/Header';
 import Footer from './components/Footer';
 import CreateTripListForm from './components/CreateTripListForm';
-import TripListDetails from './components/TripDetails';
+import TripListDetails from './components/LocationDetails';
 import UpdateTripListForm from './components/UpdateTripListForm';
 import RegisterForm from './components/RegisterForm';
 import LoginForm from './components/LoginForm';
@@ -31,7 +31,6 @@ class App extends React.Component {
     console.log('component did mount');
     await this.handleVerify();
     await this.getTripLists();
-    console.log(this.state)
   }
 
   // Get trip lists 
@@ -158,18 +157,18 @@ class App extends React.Component {
           )} />
           <Route path='/tripLists/:id' render={(props) => {
             const id = props.match.params.id;
-            const currentTripList = this.state.tripLists.find(gl => {
-              return gl.id === parseInt(id)
+            const currentTripList = this.state.tripLists.find(tl => {
+              return tl.id === parseInt(id)
             })
             return <TripListDetails
               currentTripList={currentTripList}
-            deleteTripList={this.deleteList}
+              deleteTripList={this.deleteList}
             />
           }} />
-          <Route path='/create_tripLists' render={() => (
+          <Route path='/create_tripList' render={() => (
             <CreateTripListForm
               createTripList={this.createTripList}
-              handleChange={this.createTripList}
+              handleChange={this.handleChange}
               currentUser={currentUser}
               tripListFormData={this.state.tripListFormData}
             />

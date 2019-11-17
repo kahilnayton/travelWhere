@@ -50,7 +50,7 @@ export const getTripListsByUser = async (userId) => {
 }
     
 // Create Trip List 
-export const postGiftList = async (userId, tripListData) => {
+export const postGiftListsByUser = async (userId, tripListData) => {
   const resp = await api.post(`/users/${userId}/triplists`, tripListData)
   return resp.data.triplists
 }
@@ -65,7 +65,12 @@ export const postTripList = async (id) => {
   }
 }
 
-// Update trip
+export const getLocationsByTripList = async (userId, tripListData) => {
+  const resp = await api.post(`/users/${userId}/triplists`, tripListData)
+  return resp.data.data.triplist
+}
+
+// Update trip list
 export const putTripList = async (id, tripListData) => {
   const resp = await api.put(`/triplists${ id }`, tripListData)
   return resp.data.tripList
