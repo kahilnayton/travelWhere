@@ -2,14 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Home(props) {
-  console.log(props)
   let divStyle = { display: 'none' };
   if (props.currentUser) {
     divStyle.display = '';
   }
   return (
     <main className='main'>
-      <Link id='add-triplist-button' to='/create_tripList'>
+      <Link id='add-triplist-button' to='/create_tripLists'>
         <div style={divStyle} class='cssCircle plusSign tooltip'>
           <span class='tooltiptext'>Add a Trip</span>
           &#43;
@@ -23,7 +22,7 @@ export default function Home(props) {
           <Link to={`/triplists/${tl.id}`}>
             <h3>{tl.title}</h3>
           </Link>
-          <img className='triplist-homeImg' src={tl.image_link} width='200px' height='200px' alt=""/>
+          <img className='triplist-home-img' src={tl.image_link} width='200px' height='200px' alt=""/>
         </div> 
         ))}
       </div>

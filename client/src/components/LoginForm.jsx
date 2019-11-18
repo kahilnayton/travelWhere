@@ -8,7 +8,7 @@ export default class LoginForm extends React.Component {
   }
   handleChange = (e) => {
     const { name, value } = e.target;
-    this.setState({ [name]: value  });
+    this.setState({ [name]: value });
   }
 
   render() {
@@ -40,7 +40,7 @@ export default class LoginForm extends React.Component {
         />
         <button className='submit'>Submit</button>
         <Link to='/register'>
-<button className='submit'></button>
+          <button className='submit'></button>
 
         </Link>
         <br />

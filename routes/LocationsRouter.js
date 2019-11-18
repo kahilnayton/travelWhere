@@ -45,7 +45,7 @@ locations.delete('./:id', async (req, res) => {
   })
 
   res.json({
-    message: 'You removed a localtion'
+    message: 'You removed a location'
   })
 })
 

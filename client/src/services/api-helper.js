@@ -38,7 +38,6 @@ export const verifyUser = async () => {
 }
 
 // Trip List  - get all lists
-
 export const getTripListsByUser = async (userId) => {
   try {
     const resp = await api.get(`/triplists/${userId}/`);
@@ -48,13 +47,15 @@ export const getTripListsByUser = async (userId) => {
     return { error: 'Unable to retrieve trip lists'}
   }
 }
+
     
 // Create Trip List 
-export const postGiftListsByUser = async (userId, tripListData) => {
+export const postTripListsByUser = async (userId, tripListData) => {
   const resp = await api.post(`/users/${userId}/triplists`, tripListData)
   return resp.data.triplists
 }
 
+// Retrives a trip lists
 export const postTripList = async (id) => {
   try {
     const resp = await api.get(`triplists/${id}/trips`);
@@ -65,14 +66,17 @@ export const postTripList = async (id) => {
   }
 }
 
+// Get location by list details
 export const getLocationsByTripList = async (userId, tripListData) => {
+  // debugger;
   const resp = await api.post(`/users/${userId}/triplists`, tripListData)
-  return resp.data.data.triplist
+  return resp.data.tripList // returns the trip list details
 }
+
 
 // Update trip list
 export const putTripList = async (id, tripListData) => {
-  const resp = await api.put(`/triplists${ id }`, tripListData)
+  const resp = await api.put(`/triplists${id}`, tripListData)
   return resp.data.tripList
 }
 
@@ -88,7 +92,7 @@ export const postLocation = async (tripListId, locationData) => {
   return resp.data.location
 }
 
-// Create location - put
+// Update location - put
 export const putLocation = async (locationId, locationData) => {
   const resp = await api.put(`/locationList/anything/locations/${locationId}`, locationData)
   return resp.data.location

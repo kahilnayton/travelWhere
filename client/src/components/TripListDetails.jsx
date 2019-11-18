@@ -11,7 +11,7 @@ import LocationDetails from './LocationDetails';
 
 class TripListDetails extends React.Component {
   state = {
-    trips: [],
+    locations: '',
     updateTrips: [],
     tripFormData: {
       place: '',
@@ -25,10 +25,10 @@ class TripListDetails extends React.Component {
     showTripDetails: false,
     selectedTrip: 0
   }
-  
+
   async componentDidMount() {
     await this.getLocations();
-    console.log(props)
+    console.log(this.state, 'state of trip list details')
   }
 
   showModal = () => {
@@ -38,6 +38,7 @@ class TripListDetails extends React.Component {
   hideModal = () => {
     this.setState({ show: false });
   };
+
   showModalUpdate = (id) => {
     this.setState({ showUpdate: true, selectedTrip: id });
   };
@@ -54,9 +55,8 @@ class TripListDetails extends React.Component {
     this.setState({ showTripDet: false })
   };
 
-  // Get Locations
+  // Get Locations by a trip
   getLocations = async () => {
-    debugger;
     if (this.props.currentTripList) {
       const locations = await getLocationsByTripList(this.props.currentTripList.id);
       this.setState({ locations })
@@ -78,21 +78,28 @@ class TripListDetails extends React.Component {
   }
 
   // Create Location
-  createLocation = async (id, data) => {
-    const newLocation = await putLocation(id, data);
-    this.setState(prevState => ({
-      locations: prevState.locations.map(trip => {
-        location.id === parseInt(id) ? newLocation : location)
-    }))
-  }
+  // createLocation = async (id, data) => {
+  //   const newLocation = await putLocation(id, data);
+  //   this.setState(prevState => ({
+  //     locations: prevState.locations.map(location => {
+  //       location.id === parseInt(id) ? newLocation : location
+  //     })
+  //   }))
+  // }
+
+
+
   // Update Location 
-  updateLocation = async (id, data) => {
-    const newLocation = await putLocation(id, data);
-    this.setState(prevState => ({
-      locations: prevState.locations.map(trip => {
-        location.id === parseInd(id) ? newLocations : location)
-    }))
-  }
+  // updateLocation = async (id, data) => {
+  //   debugger;
+  //   const newLocation = await putLocation(id, data);
+  //   this.setState(prevState => ({
+  //     locations: prevState.locations.map(location => {
+  //       location.id === parseInt(id) ? newLocation : location
+  //     })
+  //   }))
+  // }
+
   // Delete a location 
   deleteLocation = async (id) => {
     await deleteLocation(id);
@@ -106,10 +113,10 @@ class TripListDetails extends React.Component {
   render() {
     const { currentTripList } = this.props;
     const { locations } = this.state;
-    console.log(this.state, 'trip list details');
 
     return (
       <div className='main'>
+        {/* <h2>there are no current trips</h2>
         {currentTripList ?
           <div id='trip-list-details'>
             <div id='triplist'>
@@ -121,12 +128,12 @@ class TripListDetails extends React.Component {
               />
               <p>{currentTripList.description}</p>
               <h4>Travel Date: {moment(new Date(currentTripList.travel_date)).format('MM/DD/YYYY')}</h4>
-              <CreateTripForm
+              <CreateLocationForm
                 show={this.state.show}
                 handleClose={this.hideModal}
                 createLocation={this.createLocation}
                 handleChange={this.handleChange}
-                tripFormData={this.state.tripFormData}
+                locationFormData={this.state.tripFormData}
                 currentTripList={currentTripList}
               />
               <div className='image-container'>
@@ -152,7 +159,7 @@ class TripListDetails extends React.Component {
                         selectedLocation={this.state.selectedLocation}
                         show={this.state.showLocationDetails}
                       />
-                      <h2>[location.place}</h2>
+                      <h2>{location.place}</h2>
                       <div id='trip-button-group'>
                         <button className='three-buttons' type='button' onClick={() =>
                           this.showModalUpdate(location.id)}>Update Location</button>
@@ -162,7 +169,7 @@ class TripListDetails extends React.Component {
                           locations={this.state.locations}
                           locationId={location.id}
                           show={this.state.showUpdate}
-                          hanldeClose={this.handleModalUpdate}
+                          handleClose={this.handleModalUpdate}
                           updateLocation={this.updateLocation}
                           locationFormData={this.state.locationFormData}
                           selectedLocation={this.state.selectedLocation}
@@ -178,7 +185,7 @@ class TripListDetails extends React.Component {
               }
             </div>
           </div>
-          : <></>}
+          : <></>} */}
       </div>
     )
   }

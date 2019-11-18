@@ -1,14 +1,15 @@
 import React from 'react';
-import moment from 'moment'
+import moment from 'moment';
 export default function LocationDetails(props) {
-  console.log(props)
+  console.log(props, 'location details')
   const { show, handleClose, locations, selectedLocation } = props;
+  console.log(locations, 'locations')
   const showHideClassName = show ? 'modal display-block' : 'modal display-none';
-  const location = locations.find(location => location.id == selectedLocation);
+  // const location = locations.find(location => location.id === selectedLocation);
 
   return (
     <div>
-      {
+      {/* {
         locations ?
           <div className={showHideClassName}>
             <h3>{location.place}</h3>
@@ -22,7 +23,7 @@ export default function LocationDetails(props) {
 
           </div>
           : <></>
-      }
+      } */}
     </div>
   )
 }

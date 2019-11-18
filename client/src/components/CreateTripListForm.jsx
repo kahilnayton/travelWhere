@@ -2,12 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function CreateTripListForm(props) {
-  console.log(props)
+  console.log(props, 'create trip list')
   return (
     <div>
       <form onSubmit={(e) => {
         e.preventDefault();
-        props.createTripList(props.currentUser.id, props.tripListFormData);
+        props.postTripListsByUser(props.currentUser.id, props.tripListFormData);
       }}>
         <Link to='/'>
           <button className='back'>X</button>
@@ -15,7 +15,7 @@ export default function CreateTripListForm(props) {
 
         <label htmlFor="title">Title</label>
         <input
-          type="text"
+          type='text'
           name='title'
           id='title'
           value={props.tripListFormData.title}

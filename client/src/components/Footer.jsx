@@ -4,7 +4,7 @@ export default function Footer(props) {
 
   return (
     <footer>
-      Footer
+      <p className='footer-block'></p>
     </footer>
   )
 }

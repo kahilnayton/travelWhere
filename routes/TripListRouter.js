@@ -6,11 +6,11 @@ const tripListRouter = Router({ mergeParams: true });
 
 // Route for all trip list user owns
 tripListRouter.get('/', async (req, res) => {
-  const tripList = await TripList.findAll();
-  res.json({tripList})
+  const triplists = await TripList.findAll();
+  res.json({triplists})
 })
 
-// get triplist 
+// get trip list by pk
 tripListRouter.get('/:id', async (req, res) => {
   const id = req.params.id
   const triplists = await TripList.findAll({
@@ -31,20 +31,21 @@ tripListRouter.post('/', async (req, res) => {
   res.json({ triplist })
 })
 
-tripListRouter.delete('/:id', async (req, res, next) => {
+// Update trip list
+tripListRouter.put('./:id', async (req, res) => {
   const id = req.params.id
   const data = req.body
   const triplist = await TripList.findByPk(id)
-  await triplist.update(data) 
-
-  res.json({ triplist})
+  await triplist.update(data)
+  res.json({ triplist })
 })
 
+// delete 
 tripListRouter.delete('/:id', async (req, res, next) => {
   const id = req.params.id
   const triplist = await TripList.findByPk(id)
   try {
-    const post = await tripList.destroy()
+    const post = await triplist.destroy()
     res.json(triplist)
   } catch (e) {
     next(e)

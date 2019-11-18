@@ -1,22 +1,282 @@
-.App {
+:root {
+  --text-light: rgb(235, 235, 235);
+  --text-soft: rgb(206, 208, 235);
+  --text-dark: rgb(0, 0, 0);
+  --bg-light: rgb(255, 255, 255);
+  --bg-soft: rgb(198, 180, 216);
+  --bg-dark: #2d3436;
+  --nav-shadow: 0 0px 10px rgba(0, 0, 0, 0.6);
+  --element-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.25);
+  --text-shadow: 5px 5px .2rem rgba(0, 0, 0, 0.25);
+}
+
+html,
+body,
+.app {
+  height: 100vh
+}
+
+.action-image-container {
+  width: 40%;
+  height: 60px;
+  display: flex;
+  text-align: center;
+  align-items: baseline;
+  position: relative;
+  top: -10px;
+}
+
+.action-image {
+  height: 45px;
+  object-fit: cover;
+}
+
+body {
+  margin: 0 auto;
+  font-size: 20px;
+  font-family: sans-serif;
+}
+
+div {
+  margin: auto;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
+a, h2, h3, h4 {
+  margin: 0 auto;
+  font-size: 20px;
+  font-family: sans-serif;
+  color: var(--text-light);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+img {
+  object-fit: cover;
+  text-align: center;
+}
+
+p {
+  margin-bottom: 1em;
+  font-family: sans-serif;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+header {
+  height: 20vh;
+  display: grid;
+  grid-template-columns: 2fr 4fr 2fr;
+  background-image: url('./images/travel6.jpeg');
+  background-size: 20%;
+  background-repeat: no-repeat;
+  background-position-y: -10px;
+  background-position-x: 40px;
+  background-color: rgba(210, 245, 245, 0.836);
+}
+
+header a {
+  text-decoration: none;
+  color: var(--text-light);
+}
+
+form input {
+  height: 40px;
+  width: 70%;
+  margin: 10px;
+  color: var(--text-dark);
+  font-size: 20px;
+}
+
+form button {
+  height: 20px;
+  width: 20%;
+}
+
+form {
+  margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  text-align: center;
+  position: fixed;
+  width: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--bg-soft);
+    background-size: cover;
+    max-width: 100%;
+    max-height: 100%;
+    border: solid;
 }
 
-.App-link {
-  color: #09d3ac;
+button.back {
+  background: var(--bg-dark);
+  border: solid;
+  width: 30px;
+  display: flex;
+  margin-left: 540px;
+  position: absolute;
+  top: 5px;
+  right: 10px;
 }
+
+button.back:hover {
+  background: var(--bg-light);
+}
+
+label {
+  font-weight: bold;
+  color: var(--text-dark);
+}
+
+input {
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: var(--bg-soft);
+}
+
+input:hover {
+  transition: background-color 08 ease;
+  background: linear-gradient(to right, grey, white);
+  opacity: 0.9;
+}
+
+button {
+  cursor: pointer;
+}
+
+button.submit, button.update_button, button.trip_button {
+  cursor: pointer;
+  margin: auto;
+  margin-top: 10px; 
+}
+
+.main {
+  height: 95vh;
+  background-image: url('./images/travel2.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.heading-tags {
+  grid-column: 2;
+  flex-direction: column;
+  margin: -5px;
+}
+
+.heading-tags h1 {
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 250%;
+  color: var(--text-light);
+  text-shadow: 2px 3px 5px black;
+  padding-top: 2px;
+  margin: 20px; 
+}
+
+.heading-tags h2 {
+  font-size: 2em;
+  color: var(--text-light);
+  position: relative;
+  bottom: 20px;
+  font-family: sans-serif;
+  height: 20px;
+}
+
+#log-out {
+  align-self: center;
+  color: var(--text-light);
+  font-size: 1.5em;
+  width: 60%;
+  margin-left: 100px;
+}
+
+.account-logo {
+  height: 70px;
+  width: 45%;
+  position: relative;
+  left: 70px;
+  background-image: url('./images/travel3.jpeg');
+}
+
+.account-logo:hover {
+  width: 40%;
+}
+
+
+#add-triplist-button {
+  height: 20px;
+}
+
+.css-circle {
+  margin-top: 2px;
+  margin-bottom: 2%;
+  border-radius: 900px;
+  width: 50px;
+  height: 50px;
+  padding: 0px;
+  background: var(--bg-about);
+  border: solid;
+  color: var(--bg-contact);
+  text-align: center;
+  transition: background 0.2s linear;
+  transition: color 0.2s linear;
+}
+
+.css-circle:hover {
+  background:linear-gradient(to right, blue, rgb(61, 61, 194));
+  cursor: pointer;
+}
+
+.minus-sign {
+  line-height: 0.9em;
+  margin-bottom: 1px;
+}
+
+.plus-sign {
+  line-height: 1.1em;
+  margin-bottom: 1px;
+}
+
+.minus-sign:hover,
+.plus-sign:hover {
+  color: var(--text-light)
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+#trip-list-single {
+  width: 400px;
+  margin: 10px;
+  background-color: var (var(--bg-about));
+  border-radius: 20px;
+  border: solid;
+}
+
+#triplist-home {
+  display: flex;
+  flex-direction: row;
+  overflow-y: scroll;
+  opacity: .9;
+}
+
+#triplist-single:hover{
+  color: var(--text-light);
+  background-color: var(--bg-light);
+
+}
+
+
+
