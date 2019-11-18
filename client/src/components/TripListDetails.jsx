@@ -11,7 +11,7 @@ import LocationDetails from './LocationDetails';
 
 class TripListDetails extends React.Component {
   state = {
-    locations: '',
+    locations: [],
     updateTrips: [],
     tripFormData: {
       place: '',
@@ -82,7 +82,7 @@ class TripListDetails extends React.Component {
   //   const newLocation = await putLocation(id, data);
   //   this.setState(prevState => ({
   //     locations: prevState.locations.map(location => {
-  //       location.id === parseInt(id) ? newLocation : location
+  //       locations.id === parseInt(id) ? newLocation : location
   //     })
   //   }))
   // }
@@ -111,12 +111,14 @@ class TripListDetails extends React.Component {
   }
 
   render() {
+    // debugger;
     const { currentTripList } = this.props;
     const { locations } = this.state;
+    console.log(locations)
 
     return (
       <div className='main'>
-        {/* <h2>there are no current trips</h2>
+        <h2>there are no current trips</h2>
         {currentTripList ?
           <div id='trip-list-details'>
             <div id='triplist'>
@@ -185,7 +187,7 @@ class TripListDetails extends React.Component {
               }
             </div>
           </div>
-          : <></>} */}
+          : <></>}
       </div>
     )
   }

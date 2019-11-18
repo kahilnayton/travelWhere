@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "./logo.svg";
-import { Route, withRouter } from "react-router-dom";
+import { Route, withRouter, Link } from "react-router-dom";
 import {
   registerUser,
   loginUser,
@@ -19,6 +19,8 @@ import TripListDetails from "./components/TripListDetails";
 import RegisterForm from "./components/RegisterForm";
 import LoginForm from "./components/LoginForm";
 import Home from "./components/Home";
+import Trips from './components/Trips';
+import Locations from './components/Locations';
 import "./App.css";
 
 class App extends React.Component {
@@ -136,7 +138,19 @@ class App extends React.Component {
     const { currentUser } = this.state;
     return (
       <div className="app">
-        <h2></h2>
+        <Link to='/'>Welcome to travel where</Link>
+        {
+          this.state.currentUser ? 
+          <div id="user-info">
+
+          <p id = "user">{`Hello, ${this.state.currentUser.username}`}</p>
+          <Link to = '/register'><button id = "logout-button" onClick={this.handleLogout}>Logout</button></Link>
+
+            </div>
+            :
+            <Link to='/login'><button id="login-logout-button">Login/register</button></Link>
+          }
+        
         <Header currentUser={currentUser} handleLogout={this.handleLogout} />
         <Route
           path="/"
@@ -146,12 +160,11 @@ class App extends React.Component {
         />
 
         <Route
-          exact
           path="/login"
           render={() => (
             <LoginForm
               handleLogin={this.handleLogin}
-              tripLists={this.state.tripLists}
+              authErrorMessage={this.state.authErrorMassage}
             />
           )}
         />
@@ -165,7 +178,9 @@ class App extends React.Component {
             />
           )}
         />
-        {this.state.tripLists.length && (
+        <Trips currentUser={this.state.currentUser} />
+        <Locations currentUser={this.state.currentUser} />
+
           <Route
             path="/tripLists/:id"
             render={props => {
@@ -181,7 +196,7 @@ class App extends React.Component {
               );
             }}
           />
-        )}
+
         <Route
           path="/create_tripLists"
           render={() => (

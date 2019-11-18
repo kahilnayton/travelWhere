@@ -83,7 +83,7 @@ export const putTripList = async (id, tripListData) => {
 // Delete a trip list
 export const deleteTripList = async (id, tripListData) => {
   const resp = await api.put(`/triplists/${id}`);
-  return resp.data;
+  return resp.data.locations;
 }
 
 // Create location 

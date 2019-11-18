@@ -99,7 +99,7 @@ export default class UpdateLocationForm extends React.Component {
             value={image_link}
             onChange={this.handleChange}
           />
-        {/* <button className='update-button' onClick={handleUpdate}>Update Location</button> */}
+          <button className='update-button'>Update Location</button>
         </form>
       </div>
     )
