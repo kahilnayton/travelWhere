@@ -55,7 +55,7 @@ export const postTripListsByUser = async (userId, tripListData) => {
   return resp.data.triplists
 }
 
-// Retrives a trip lists
+// Retrieve a trip lists
 export const postTripList = async (id) => {
   try {
     const resp = await api.get(`triplists/${id}/trips`);
@@ -67,10 +67,10 @@ export const postTripList = async (id) => {
 }
 
 // Get location by list details
-export const getLocationsByTripList = async (userId, tripListData) => {
-  // debugger;
-  const resp = await api.post(`/users/${userId}/triplists`, tripListData)
-  return resp.data.tripList // returns the trip list details
+export const getLocationsByTripList = async (tripListId, tripListData) => {
+  debugger;
+  const resp = await api.get(`/tripLists/${tripListId}/locations`)
+  return resp.data // returns the trip list details
 }
 
 
