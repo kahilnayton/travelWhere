@@ -1,16 +1,18 @@
 :root {
-  --text-light: rgb(235, 235, 235);
-  --text-soft: rgb(206, 208, 235);
+  --text-light: rgb(255, 255, 255);
+  --text-grey: rgb(230, 230, 230);
+  --text-soft: rgb(211, 248, 255);
   --text-dark: rgb(0, 0, 0);
   --bg-light: rgb(255, 255, 255);
-  --bg-soft: rgb(198, 180, 216);
+  --bg-grey: rgb(230, 230, 230);
+  --bg-soft: rgb(211, 248, 255);
   --bg-dark: #2d3436;
   --nav-shadow: 0 0px 10px rgba(0, 0, 0, 0.6);
   --element-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.25);
   --text-shadow: 5px 5px 0.2rem rgba(0, 0, 0, 0.25);
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (min-width: 320px) {
   #main {
     overflow-y: hidden;
     background-size: 100% 100%;
@@ -33,7 +35,7 @@
   }
 
   .account-logo {
-    margin-right: 150px;
+    margin-right: -800px;
     width: 60px;
   }
 
@@ -48,430 +50,456 @@
   }
 }
 
-@media only screen and (min-width: 500px) {
-}
+@media only screen and (min-width: 801px) {
+  html,
+  body,
+  .app {
+    height: 100vh;
+  }
 
-html,
-body,
-.app {
-  height: 100vh;
-}
+  .action-image-container {
+    cursor: pointer;
+    width: 40%;
+    height: 60px;
+    display: flex;
+    text-align: center;
+    align-items: baseline;
+    position: relative;
+    top: -10px;
+  }
 
-.action-image-container {
-  width: 40%;
-  height: 60px;
-  display: flex;
-  text-align: center;
-  align-items: baseline;
-  position: relative;
-  top: -10px;
-}
+  .action-image {
+    height: 45px;
+    object-fit: cover;
+  }
+  img.action-image {
+    cursor: pointer;
+  }
 
-.action-image {
-  height: 45px;
-  object-fit: cover;
-}
 
-body {
-  margin: 0 auto;
-  font-size: 20px;
-  font-family: sans-serif;
-}
+  body {
+    margin: 0 auto;
+    font-size: 20px;
+    font-family: sans-serif;
+  }
 
-div {
-  margin: auto;
-  text-align: center;
-}
+  div {
+    margin: auto;
+    text-align: center;
+  }
 
-a,
-h2,
-h3,
-h4 {
-  margin: 0 auto;
-  font-size: 20px;
-  font-family: sans-serif;
-  color: var(--text-light);
-}
+  a,
+  h2,
+  h3,
+  h4 {
+    margin: 0 auto;
+    font-size: 20px;
+    font-family: sans-serif;
+    color: var(--text-dark);
+  }
 
-img {
-  object-fit: cover;
-  text-align: center;
-}
+  img {
+    object-fit: cover;
+    text-align: center;
+  }
 
-p {
-  margin-bottom: 1em;
-  font-family: sans-serif;
-  text-align: center;
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
+  p {
+    margin-bottom: 1em;
+    font-family: sans-serif;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
 
-header {
-  height: 20vh;
-  display: grid;
-  grid-template-columns: 2fr 4fr 2fr;
-  background-image: url("./images/travel6.jpeg");
-  background-size: 20%;
-  background-repeat: no-repeat;
-  background-position-y: -10px;
-  background-position-x: 40px;
-  background-color: rgba(210, 245, 245, 0.836);
-}
+  header {
+    height: 20vh;
+    display: grid;
+    grid-template-columns: 2fr 4fr 2fr;
+    /* background-image: url("./images/travel6.jpeg"); */
+    background-size: 20%;
+    background-repeat: no-repeat;
+    background-position-y: -10px;
+    background-position-x: 40px;
+    background-color: var(--bg-light);
+  }
 
-header a {
-  text-decoration: none;
-  color: var(--text-light);
-}
+  header a {
+    text-decoration: none;
+    color: var(--text-dark);
+  }
 
-form input {
-  height: 40px;
-  width: 70%;
-  margin: 10px;
-  color: var(--text-dark);
-  font-size: 20px;
-}
+  form input {
+    height: 40px;
+    width: 70%;
+    margin: 10px;
+    color: var(--text-dark);
+    font-size: 20px;
+  }
 
-form button {
-  height: 20px;
-  width: 20%;
-}
+  form button {
+    height: 100%;
+    width: 100%;
+  }
 
-form {
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  position: fixed;
-  width: 50%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: var(--bg-soft);
-  background-size: cover;
-  max-width: 100%;
-  max-height: 100%;
-  border: solid;
-}
+  form {
+    margin: auto;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: fixed;
+    width: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg-soft);
+    background-size: cover;
+    max-width: 100%;
+    max-height: 100%;
+    opacity: 0.8;
+  }
 
-button.back {
-  background: var(--bg-dark);
-  border: solid;
-  width: 30px;
-  display: flex;
-  margin-left: 540px;
-  position: absolute;
-  top: 5px;
-  right: 10px;
-}
+  button.back {
+    background: var(--bg-dark);
+    color: var(--text-light);
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    display: flex;
+    margin-left: 540px;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+  }
 
-button.back:hover {
-  background: var(--bg-light);
-}
+  button.back:hover {
+    background: var(--bg-light);
+    color: var(--text-dark);
+  }
 
-label {
-  font-weight: bold;
-  color: var(--text-dark);
-}
+  label {
+    font-weight: bold;
+    color: var(--text-dark);
+  }
 
-footer {
-  background: var(--bg-light);
-  height: 7vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  footer {
+    background: var(--bg-light);
+    height: 7vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-input {
-  border-radius: 8px;
-  font-size: 14px;
-  background-color: var(--bg-soft);
-}
+  input {
+    font-size: 14px;
+    background-color: var(--bg-soft);
+  }
 
-input:hover {
-  transition: background-color 08 ease;
-  background: linear-gradient(to right, grey, white);
-  opacity: 0.9;
-}
+  input:hover {
+    transition: background-color 2s;
+    background: var(--bg-grey);
+  }
 
-button {
-  cursor: pointer;
-}
+  button {
+    cursor: pointer;
+  }
 
-button.submit,
-button.update_button,
-button.trip_button {
-  cursor: pointer;
-  margin: auto;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  font-size: 16px;
-  border: solid;
-  border-radius: 16px;
-  width: 120px;
-  color: var(--text-light);
-  background: var(--bg-dark);
-}
+  button.submit,
+  button.update_button,
+  button.trip_button {
+    cursor: pointer;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border-radius: 16px;
+    width: 120px;
+    color: var(--text-light);
+    background: var(--bg-dark);
+  }
 
-button.submit:hover {
-  background: var(--bg-light);
-}
+  button.submit:hover {
+    color: var (var(--text-dark));
+  }
 
-#copyright {
-  text-align: center;
-  color: var(--text-light);
-}
+  button.submit:hover {
+    background: var(--bg-light);
+  }
 
-img.action-image {
-  cursor: pointer;
-}
+  #copyright {
+    text-align: center;
+    color: var(--text-light);
+  }
 
-#trip-list-details {
-  height: 800px;
-  width: 90%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  background-image: url("./images/travel4.jpeg") no-repeat center;
-  border-radius: 10px;
-}
+  img.action-image {
+    cursor: pointer;
+  }
 
-#trip-list-details h1 {
-  text-align: center;
-}
+  #trip-list-details {
+    height: 800px;
+    width: 90%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-image: url("./images/travel4.jpeg") no-repeat center;
+  }
 
-#triplist {
-  height: 60vh;
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  object-fit: contain;
-  margin-top: 180px;
-}
+  #trip-list-details h1 {
+    text-align: center;
+  }
 
-#triplist h2 {
-  margin-top: 20px;
-}
-#triplist p {
-  margin-top: 20px;
-  font-size: 25px;
-}
+  #triplist {
+    height: 60vh;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    object-fit: contain;
+    margin-top: 180px;
+  }
 
-.triplist-image {
-  margin-top: 15px;
-  width: 60%;
-  height: 300px;
-}
+  #triplist h2 {
+    font-size: 50px;
+    margin-top: 20px;
+  }
+  #triplist p {
+    margin-top: 20px;
+    font-size: 25px;
+  }
 
-#tripsContainer {
-  display: flex;
-  flex-wrap: wrap;
-  overflow: scroll;
-  width: 90%;
-  height: 500px;
-  margin-top: 210px;
-}
+  .triplist-image {
+    margin-top: 15px;
+    width: 60%;
+    height: 300px;
+  }
 
-.trip {
-  height: 70%;
-  display: flex;
-  justify-content: center;
-  padding: 2%;
-}
+  #tripsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: scroll;
+    width: 90%;
+    height: 500px;
+    margin-top: 210px;
+  }
 
-.tripDetails {
-  height: 150%;
-}
+  .trip {
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    padding: 2%;
+  }
 
-.three-buttons {
-  height: 30px;
-  cursor: pointer;
-  margin: auto;
-  font-size: 16px;
-  border-radius: 5%;
-  width: 120px;
-  color: var(--text-dark);
-  background: var(--bg-soft);
-}
+  .tripDetails {
+    height: 150%;
+  }
 
-.trip-image {
-  width: 30%;
-  height: 140px;
-  margin-top: 4%;
-}
+  .three-buttons {
+    height: 30px;
+    cursor: pointer;
+    margin: auto;
+    font-size: 16px;
+    width: 120px;
+    color: var(--text-dark);
+    background: var(--bg-soft);
+  }
 
-#trip-button-group {
-  display: flex;
-  justify-content: center;
-}
+  .trip-image {
+    width: 30%;
+    height: 140px;
+    margin-top: 4%;
+  }
 
-.main {
-  height: 95vh;
-  background-image: url("./images/travel2.jpeg");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
+  #trip-button-group {
+    display: flex;
+    justify-content: center;
+  }
 
-.heading-tags {
-  grid-column: 2;
-  flex-direction: column;
-  margin: -5px;
-}
+  .main {
+    height: 95vh;
+    background: var(--bg-light);
+    /* background-image: url("./images/travel2.jpeg"); */
+  }
 
-.heading-tags h1 {
-  text-align: center;
-  font-family: sans-serif;
-  font-size: 250%;
-  color: var(--text-light);
-  text-shadow: 2px 3px 5px black;
-  padding-top: 2px;
-  margin: 20px;
-}
+  .heading-tags {
+    grid-column: 2;
+    flex-direction: column;
+    margin: -5px;
+  }
 
-.heading-tags h2 {
-  font-size: 2em;
-  color: var(--text-light);
-  position: relative;
-  bottom: 20px;
-  font-family: sans-serif;
-  height: 20px;
-}
+  .heading-tags h1 {
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 250%;
+    color: var(--text-light);
+    text-shadow: 2px 3px 5px black;
+    padding-top: 2px;
+    margin: 20px;
+  }
 
-#log-out {
-  align-self: center;
-  color: var(--text-light);
-  font-size: 1.5em;
-  width: 60%;
-  margin-left: 100px;
-}
+  .heading-tags h2 {
+    font-size: 2em;
+    color: var(--text-light);
+    position: relative;
+    bottom: 20px;
+    font-family: sans-serif;
+    height: 20px;
+  }
 
-.account-logo {
-  height: 70px;
-  width: 45%;
-  position: relative;
-  left: 70px;
-  background-image: url("./images/travel3.jpeg");
-}
+  #log-out {
+    align-self: center;
+    color: var(--text-light);
+    font-size: 1.5em;
+    width: 60%;
+    margin-left: 100px;
+  }
 
-.account-logo:hover {
-  width: 40%;
-}
+  .account-logo {
+    height: 100%;
+    width: 45%;
+    position: relative;
+    left: 70px;
+    /* background-image: url("./images/travel3.jpeg"); */
+  }
 
-#add-triplist-button {
-  height: 20px;
-}
+  .account-logo:hover {
+    animation-name: spin;
+    animation-duration: 5000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
 
-.css-circle {
-  margin-top: 2px;
-  margin-bottom: 2%;
-  border-radius: 900px;
-  width: 50px;
-  height: 50px;
-  padding: 0px;
-  background: var(--bg-about);
-  border: solid;
-  color: var(--bg-contact);
-  text-align: center;
-  transition: background 0.2s linear;
-  transition: color 0.2s linear;
-}
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
 
-.css-circle:hover {
-  background: linear-gradient(to right, blue, rgb(61, 61, 194));
-  cursor: pointer;
-}
+  #add-triplist-button {
+    height: 20px;
+  }
 
-.minus-sign {
-  line-height: 0.9em;
-  margin-bottom: 1px;
-}
+  .css-circle {
+    margin-top: 2px;
+    margin-bottom: 2%;
+    width: 50px;
+    height: 50px;
+    padding: 0px;
+    background: var(--bg-about);
+    color: var(--bg-contact);
+    text-align: center;
+    transition: background 0.2s linear;
+    transition: color 0.2s linear;
+  }
 
-.plus-sign {
-  line-height: 1.1em;
-  margin-bottom: 1px;
-}
+  .css-circle:hover {
+    background: linear-gradient(to right, blue, rgb(61, 61, 194));
+    cursor: pointer;
+  }
 
-.minus-sign:hover,
-.plus-sign:hover {
-  color: var(--text-light);
-}
+  .minus-sign {
+    line-height: 0.9em;
+    margin-bottom: 1px;
+  }
 
-.tooltip {
-  position: relative;
-  display: inline-block;
-}
+  .plus-sign {
+    line-height: 1.1em;
+    margin-bottom: 1px;
+  }
 
-.tooltip .tooltiptext {
-}
+  .minus-sign:hover,
+  .plus-sign:hover {
+    color: var(--text-light);
+  }
 
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-}
+  .tooltip {
+    position: relative;
+    display: inline-block;
+  }
 
-#trip-list-single {
-  width: 400px;
-  margin: 10px;
-  background-color: var (var(--bg-about));
-  border-radius: 20px;
-  border: solid;
-}
+  .tooltip .tooltiptext {
+  }
 
-#triplist-home {
-  display: flex;
-  flex-direction: row;
-  overflow-y: scroll;
-  opacity: 0.9;
-}
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
 
-#triplist-single:hover {
-  color: var(--text-light);
-  background-color: var(--bg-light);
-}
+  #trip-list-single {
+    width: 400px;
+    margin: 10px;
+    background-color: var (var(--bg-about));
+    border-radius: 20px;
+    border: solid;
+  }
 
-.footer-block {
-  width: 150px;
-  height: 40px;
-  background-image: url("./images/travel1.jpeg") no-repeat center;
-  background-size: 40px;
-}
+  #triplist-home {
+    display: flex;
+    flex-direction: row;
+    overflow-y: scroll;
+    opacity: 0.9;
+  }
 
-.footer-img {
-  width: 30px;
-  height: 40px;
-  background-image: url("./images/travel4.jpeg") no-repeat center;
-}
+  #triplist-single:hover {
+    color: var(--text-light);
+    background-color: var(--bg-light);
+  }
 
-.modal {
-  position: absolute;
-  top: 70vh;
-  left: 65%;
-  width: 30%;
-  margin-bottom: 20px;
-  background: var(--bg-light);
-  font-size: 1.5em;
-}
+  .footer-block {
+    width: 150px;
+    height: 40px;
+    background-image: url("./images/travel1.jpeg") no-repeat center;
+    background-size: 40px;
+  }
 
-.modal-main {
-  display: flex;
-  margin: auto;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  position: fixed;
-  width: 50%;
-  height: auto;
-  top: 50%;
-  transform: translate(-20%, -20%);
-  background: var(--bg-light);
-  background-size: cover;
-  max-width: 100%;
-  max-height: 100%;
-}
+  .footer-img {
+    width: 30px;
+    height: 40px;
+    background-image: url("./images/travel4.jpeg") no-repeat center;
+  }
 
-.display-block {
-  display: block;
-}
+  .modal {
+    position: absolute;
+    top: 70vh;
+    left: 65%;
+    width: 30%;
+    margin-bottom: 20px;
+    background: var(--bg-light);
+    font-size: 1.5em;
+  }
 
-.display-none {
-  display: none;
+  .modal-main {
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: fixed;
+    width: 50%;
+    height: auto;
+    top: 50%;
+    transform: translate(-20%, -20%);
+    background: var(--bg-light);
+    background-size: cover;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .display-block {
+    display: block;
+  }
+
+  .display-none {
+    display: none;
+  }
+
+  .location-image {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .triplist-image {
+    width: 100%;
+  }
 }
