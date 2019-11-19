@@ -56,7 +56,7 @@ export default class UpdateLocationForm extends React.Component {
       <div className={showHideClassName}>
         <form action="modal-main" onSubmit={(e) => {
           e.preventDefault();
-          this.props.UpdateLocation(this.props.selectedLocation, this.state);
+          this.props.updateLocation(this.props.selectedLocation, this.state);
         }}>
           <button type='button' id='cancel' onClick={handleClose} className='back'>X</button>
           <label htmlFor="place">Place</label>

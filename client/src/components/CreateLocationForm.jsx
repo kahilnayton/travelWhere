@@ -11,10 +11,8 @@ export default function CreateLocationForm(props) {
         e.preventDefault();
         props.createLocation(currentTripList.id, locationFormData);
       }} >
-
         <Link to='/'>
           <button className='back'>X</button>
-
         </Link>
 
         <label htmlFor="place">Place</label>
@@ -35,7 +33,7 @@ export default function CreateLocationForm(props) {
         />
         <label htmlFor="departure_date">Departure Date</label>
         <input
-          type="text"
+          type="date"
           name='departure_date'
           id='departure_date'
           value={locationFormData.departure_date}
@@ -43,7 +41,7 @@ export default function CreateLocationForm(props) {
         />
         <label htmlFor="return_date">Return Date</label>
         <input
-          type="text"
+          type="date"
           name='return_date'
           id='return_date'
           value={locationFormData.return_date}

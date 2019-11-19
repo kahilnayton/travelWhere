@@ -68,9 +68,14 @@ export const postTripList = async (id) => {
 
 // Get location by list details
 export const getLocationsByTripList = async (tripListId, tripListData) => {
-  debugger;
-  const resp = await api.get(`/tripLists/${tripListId}/locations`)
-  return resp.data // returns the trip list details
+  // debugger;
+  try {
+    const resp = await api.get(`/tripLists/${tripListId}/locations`, tripListData)
+    return resp.data.locations; // returns the trip list details
+  }
+  catch (err) {
+    return { error: 'Unable to retrieve locations' }
+  }
 }
 
 
@@ -88,7 +93,7 @@ export const deleteTripList = async (id, tripListData) => {
 
 // Create location 
 export const postLocation = async (tripListId, locationData) => {
-  const resp = await api.post(`./locationList/${tripListId}/trips`, locationData)
+  const resp = await api.post(`./locationlist/${tripListId}/locations`, locationData)
   return resp.data.location
 }
 

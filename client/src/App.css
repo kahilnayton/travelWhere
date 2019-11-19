@@ -7,13 +7,54 @@
   --bg-dark: #2d3436;
   --nav-shadow: 0 0px 10px rgba(0, 0, 0, 0.6);
   --element-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.25);
-  --text-shadow: 5px 5px .2rem rgba(0, 0, 0, 0.25);
+  --text-shadow: 5px 5px 0.2rem rgba(0, 0, 0, 0.25);
+}
+
+@media only screen and (max-width: 500px) {
+  #main {
+    overflow-y: hidden;
+    background-size: 100% 100%;
+    justify-content: flex-start;
+  }
+  #triplist-home {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  header {
+    display: flex;
+    flex-direction: row;
+    width: 500px;
+    height: 150px;
+  }
+
+  form {
+    margin: auto;
+  }
+
+  .account-logo {
+    margin-right: 150px;
+    width: 60px;
+  }
+
+  .heading-tags h1 {
+    font-size: 30px;
+    margin-left: 130%;
+  }
+
+  .heading-tags h2 {
+    font-size: 15px;
+    margin-left: 150%;
+  }
+}
+
+@media only screen and (min-width: 500px) {
 }
 
 html,
 body,
 .app {
-  height: 100vh
+  height: 100vh;
 }
 
 .action-image-container {
@@ -42,7 +83,10 @@ div {
   text-align: center;
 }
 
-a, h2, h3, h4 {
+a,
+h2,
+h3,
+h4 {
   margin: 0 auto;
   font-size: 20px;
   font-family: sans-serif;
@@ -66,7 +110,7 @@ header {
   height: 20vh;
   display: grid;
   grid-template-columns: 2fr 4fr 2fr;
-  background-image: url('./images/travel6.jpeg');
+  background-image: url("./images/travel6.jpeg");
   background-size: 20%;
   background-repeat: no-repeat;
   background-position-y: -10px;
@@ -104,10 +148,10 @@ form {
   left: 50%;
   transform: translate(-50%, -50%);
   background: var(--bg-soft);
-    background-size: cover;
-    max-width: 100%;
-    max-height: 100%;
-    border: solid;
+  background-size: cover;
+  max-width: 100%;
+  max-height: 100%;
+  border: solid;
 }
 
 button.back {
@@ -130,6 +174,14 @@ label {
   color: var(--text-dark);
 }
 
+footer {
+  background: var(--bg-light);
+  height: 7vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 input {
   border-radius: 8px;
   font-size: 14px;
@@ -146,15 +198,116 @@ button {
   cursor: pointer;
 }
 
-button.submit, button.update_button, button.trip_button {
+button.submit,
+button.update_button,
+button.trip_button {
   cursor: pointer;
   margin: auto;
-  margin-top: 10px; 
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  border: solid;
+  border-radius: 16px;
+  width: 120px;
+  color: var(--text-light);
+  background: var(--bg-dark);
+}
+
+button.submit:hover {
+  background: var(--bg-light);
+}
+
+#copyright {
+  text-align: center;
+  color: var(--text-light);
+}
+
+img.action-image {
+  cursor: pointer;
+}
+
+#trip-list-details {
+  height: 800px;
+  width: 90%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-image: url("./images/travel4.jpeg") no-repeat center;
+  border-radius: 10px;
+}
+
+#trip-list-details h1 {
+  text-align: center;
+}
+
+#triplist {
+  height: 60vh;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  object-fit: contain;
+  margin-top: 180px;
+}
+
+#triplist h2 {
+  margin-top: 20px;
+}
+#triplist p {
+  margin-top: 20px;
+  font-size: 25px;
+}
+
+.triplist-image {
+  margin-top: 15px;
+  width: 60%;
+  height: 300px;
+}
+
+#tripsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: scroll;
+  width: 90%;
+  height: 500px;
+  margin-top: 210px;
+}
+
+.trip {
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  padding: 2%;
+}
+
+.tripDetails {
+  height: 150%;
+}
+
+.three-buttons {
+  height: 30px;
+  cursor: pointer;
+  margin: auto;
+  font-size: 16px;
+  border-radius: 5%;
+  width: 120px;
+  color: var(--text-dark);
+  background: var(--bg-soft);
+}
+
+.trip-image {
+  width: 30%;
+  height: 140px;
+  margin-top: 4%;
+}
+
+#trip-button-group {
+  display: flex;
+  justify-content: center;
 }
 
 .main {
   height: 95vh;
-  background-image: url('./images/travel2.jpeg');
+  background-image: url("./images/travel2.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -172,7 +325,7 @@ button.submit, button.update_button, button.trip_button {
   color: var(--text-light);
   text-shadow: 2px 3px 5px black;
   padding-top: 2px;
-  margin: 20px; 
+  margin: 20px;
 }
 
 .heading-tags h2 {
@@ -197,13 +350,12 @@ button.submit, button.update_button, button.trip_button {
   width: 45%;
   position: relative;
   left: 70px;
-  background-image: url('./images/travel3.jpeg');
+  background-image: url("./images/travel3.jpeg");
 }
 
 .account-logo:hover {
   width: 40%;
 }
-
 
 #add-triplist-button {
   height: 20px;
@@ -225,7 +377,7 @@ button.submit, button.update_button, button.trip_button {
 }
 
 .css-circle:hover {
-  background:linear-gradient(to right, blue, rgb(61, 61, 194));
+  background: linear-gradient(to right, blue, rgb(61, 61, 194));
   cursor: pointer;
 }
 
@@ -241,7 +393,7 @@ button.submit, button.update_button, button.trip_button {
 
 .minus-sign:hover,
 .plus-sign:hover {
-  color: var(--text-light)
+  color: var(--text-light);
 }
 
 .tooltip {
@@ -250,7 +402,6 @@ button.submit, button.update_button, button.trip_button {
 }
 
 .tooltip .tooltiptext {
-
 }
 
 .tooltip:hover .tooltiptext {
@@ -269,14 +420,58 @@ button.submit, button.update_button, button.trip_button {
   display: flex;
   flex-direction: row;
   overflow-y: scroll;
-  opacity: .9;
+  opacity: 0.9;
 }
 
-#triplist-single:hover{
+#triplist-single:hover {
   color: var(--text-light);
   background-color: var(--bg-light);
-
 }
 
+.footer-block {
+  width: 150px;
+  height: 40px;
+  background-image: url("./images/travel1.jpeg") no-repeat center;
+  background-size: 40px;
+}
 
+.footer-img {
+  width: 30px;
+  height: 40px;
+  background-image: url("./images/travel4.jpeg") no-repeat center;
+}
 
+.modal {
+  position: absolute;
+  top: 70vh;
+  left: 65%;
+  width: 30%;
+  margin-bottom: 20px;
+  background: var(--bg-light);
+  font-size: 1.5em;
+}
+
+.modal-main {
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: fixed;
+  width: 50%;
+  height: auto;
+  top: 50%;
+  transform: translate(-20%, -20%);
+  background: var(--bg-light);
+  background-size: cover;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}

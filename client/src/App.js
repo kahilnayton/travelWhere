@@ -19,8 +19,6 @@ import TripListDetails from "./components/TripListDetails";
 import RegisterForm from "./components/RegisterForm";
 import LoginForm from "./components/LoginForm";
 import Home from "./components/Home";
-import Trips from './components/Trips';
-import Locations from './components/Locations';
 import "./App.css";
 
 class App extends React.Component {
@@ -37,20 +35,21 @@ class App extends React.Component {
   };
 
   componentDidMount = async () => {
-    console.log("component did mount");
     await this.handleVerify();
     await this.getTripLists();
-    console.log(this.state, "App state");
   };
 
   // Get trip lists
   getTripLists = async () => {
+
     if (this.state.currentUser) {
       const tripLists = await getTripListsByUser(this.state.currentUser.id);
       this.setState({ tripLists });
-    } else {
-      this.setState({ tripLists: [] });
     }
+    
+  //   else {
+  //     this.setState({ tripLists: [] });
+  //   }
   };
 
   handleVerify = async () => {
@@ -134,28 +133,26 @@ class App extends React.Component {
     this.props.history.push("../");
   };
 
+
+
   render() {
+    console.log(this.state)
     const { currentUser } = this.state;
     return (
       <div className="app">
         <Link to='/'>Welcome to travel where</Link>
-        {
-          this.state.currentUser ? 
-          <div id="user-info">
+        <Header
+          currentUser={currentUser}
+          handleLogout={this.handleLogout}
+        />
 
-          <p id = "user">{`Hello, ${this.state.currentUser.username}`}</p>
-          <Link to = '/register'><button id = "logout-button" onClick={this.handleLogout}>Logout</button></Link>
-
-            </div>
-            :
-            <Link to='/login'><button id="login-logout-button">Login/register</button></Link>
-          }
-        
-        <Header currentUser={currentUser} handleLogout={this.handleLogout} />
         <Route
           path="/"
           render={() => (
-            <Home currentUser={currentUser} tripLists={this.state.tripLists} />
+            <Home
+              currentUser={currentUser}
+              tripLists={this.state.tripLists}
+            />
           )}
         />
 
@@ -178,8 +175,6 @@ class App extends React.Component {
             />
           )}
         />
-        <Trips currentUser={this.state.currentUser} />
-        <Locations currentUser={this.state.currentUser} />
 
           <Route
             path="/tripLists/:id"
@@ -201,7 +196,7 @@ class App extends React.Component {
           path="/create_tripLists"
           render={() => (
             <CreateTripListForm
-              postTripListsByUser={postTripListsByUser}
+              createTripList={this.createTripList}
               handleChange={this.handleChange}
               currentUser={currentUser}
               tripListFormData={this.state.tripListFormData}
@@ -210,14 +205,14 @@ class App extends React.Component {
         />
         <Route
           exact
-          path="/update_giftList/:id"
-          render={props => {
+          path="/update_tripList/:id"
+          render={(props) => {
             const id = props.match.params.id;
             return (
               <UpdateTripListForm
                 tripLists={this.state.tripLists}
                 tripListId={id}
-                tripListFormData={this.state.trip.istFormData}
+                tripListFormData={this.state.tripListFormData}
                 updateTripList={this.updateTripList}
               />
             );

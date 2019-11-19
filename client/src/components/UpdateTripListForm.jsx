@@ -10,6 +10,7 @@ export default class UpdateTripListForm extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.props, 'update mount')
     this.setFormData();
   }
 
@@ -27,6 +28,7 @@ export default class UpdateTripListForm extends React.Component {
 
 
   setFormData = () => {
+    // debugger;
     if (this.props.tripLists.length) {
       const {
         title,

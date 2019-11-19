@@ -7,7 +7,7 @@ export default function CreateTripListForm(props) {
     <div>
       <form onSubmit={(e) => {
         e.preventDefault();
-        props.postTripListsByUser(props.currentUser.id, props.tripListFormData);
+        props.createTripList(props.currentUser.id, props.tripListFormData);
       }}>
         <Link to='/'>
           <button className='back'>X</button>

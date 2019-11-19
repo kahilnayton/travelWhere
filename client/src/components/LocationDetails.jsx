@@ -10,7 +10,7 @@ export default function LocationDetails(props) {
   return (
     <div>
       {
-        locations ?
+        location ?
           <div className={showHideClassName}>
             <h3>{location.place}</h3>
             <p>{location.address}</p>
@@ -20,7 +20,6 @@ export default function LocationDetails(props) {
               className='update-button'
               onClick={handleClose}>Close</button>
             <img>Image: {location.image_link}</img>
-
           </div>
           : <></>
       }
