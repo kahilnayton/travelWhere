@@ -36,7 +36,6 @@ export default function Header(props) {
         }
 
       </nav>
-      header
     </header>
   )
 }

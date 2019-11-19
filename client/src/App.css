@@ -12,6 +12,472 @@
   --text-shadow: 5px 5px 0.2rem rgba(0, 0, 0, 0.25);
 }
 
+html,
+body,
+.app {
+  height: 100vh;
+}
+
+.action-image-container {
+  cursor: pointer;
+  width: 40%;
+  height: 60px;
+  display: flex;
+  text-align: center;
+  align-items: baseline;
+  position: relative;
+  top: -10px;
+}
+
+.action-image {
+  height: 45px;
+  object-fit: cover;
+}
+img.action-image {
+  cursor: pointer;
+}
+
+body {
+  margin: 0 auto;
+  font-size: 20px;
+  font-family: sans-serif;
+}
+
+div {
+  margin: auto;
+  text-align: center;
+}
+
+a,
+h2,
+h3,
+h4 {
+  margin: 0 auto;
+  font-size: 20px;
+  font-family: sans-serif;
+  color: var(--text-dark);
+}
+
+img {
+  object-fit: cover;
+  text-align: center;
+}
+
+p {
+  margin-bottom: 1em;
+  font-family: sans-serif;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+header {
+  height: 20vh;
+  display: grid;
+  grid-template-columns: 2fr 4fr 2fr;
+  /* background-image: url("./images/travel6.jpeg"); */
+  background-size: 20%;
+  background-repeat: no-repeat;
+  background-position-y: -10px;
+  background-position-x: 40px;
+  background-color: var(--bg-light);
+}
+
+header a {
+  text-decoration: none;
+  color: var(--text-dark);
+}
+
+form input {
+  height: 40px;
+  width: 70%;
+  margin: 10px;
+  color: var(--text-dark);
+  font-size: 20px;
+}
+
+form button {
+  height: 100%;
+  width: 100%;
+}
+
+form {
+  margin: auto;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: fixed;
+  width: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--bg-soft);
+  background-size: cover;
+  max-width: 100%;
+  max-height: 100%;
+  opacity: 0.8;
+}
+
+button.back {
+  background: var(--bg-dark);
+  color: var(--text-light);
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+  display: flex;
+  margin-left: 540px;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+button.back:hover {
+  background: var(--bg-light);
+  color: var(--text-dark);
+}
+
+label {
+  font-weight: bold;
+  color: var(--text-dark);
+}
+
+footer {
+  background: var(--bg-light);
+  height: 7vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  font-size: 14px;
+  background-color: var(--bg-soft);
+}
+
+input:hover {
+  transition: background-color 2s;
+  background: var(--bg-grey);
+}
+
+button {
+  cursor: pointer;
+}
+
+button.submit,
+button.update_button,
+button.trip_button {
+  cursor: pointer;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  border-radius: 16px;
+  width: 120px;
+  color: var(--text-light);
+  background: var(--bg-dark);
+}
+
+button.submit:hover {
+  color: var (var(--text-dark));
+}
+
+button.submit:hover {
+  background: var(--bg-light);
+}
+
+#copyright {
+  text-align: center;
+  color: var(--text-light);
+}
+
+img.action-image {
+  cursor: pointer;
+}
+
+#trip-list-details {
+  height: 800px;
+  width: 90%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-image: url("./images/travel4.jpeg") no-repeat center;
+}
+
+#trip-list-details h1 {
+  text-align: center;
+}
+
+#triplist {
+  height: 60vh;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  object-fit: contain;
+  margin-top: 180px;
+}
+
+#triplist h2 {
+  font-size: 50px;
+  margin-top: 20px;
+}
+#triplist p {
+  margin-top: 20px;
+  font-size: 25px;
+}
+
+.triplist-image {
+  margin-top: 15px;
+  width: 60%;
+  height: 300px;
+}
+
+#tripsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: scroll;
+  width: 90%;
+  height: 500px;
+  margin-top: 210px;
+}
+
+.trip {
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  padding: 2%;
+}
+
+.tripDetails {
+  height: 150%;
+}
+
+.three-buttons {
+  height: 30px;
+  cursor: pointer;
+  margin: auto;
+  font-size: 16px;
+  width: 120px;
+  color: var(--text-dark);
+  background: var(--bg-soft);
+}
+
+.trip-image {
+  width: 30%;
+  height: 140px;
+  margin-top: 4%;
+}
+
+#trip-button-group {
+  display: flex;
+  justify-content: center;
+}
+
+.main {
+  height: 95vh;
+  background: var(--bg-light);
+  /* background-image: url("./images/travel2.jpeg"); */
+}
+
+.heading-tags {
+  grid-column: 2;
+  flex-direction: column;
+  margin: -5px;
+}
+
+.heading-tags h1 {
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 250%;
+  color: var(--text-light);
+  text-shadow: 2px 3px 5px black;
+  padding-top: 2px;
+  margin: 20px;
+}
+
+.heading-tags h2 {
+  font-size: 2em;
+  color: var(--text-light);
+  position: relative;
+  bottom: 20px;
+  font-family: sans-serif;
+  height: 20px;
+}
+
+#log-out {
+  align-self: center;
+  color: var(--text-light);
+  font-size: 1.5em;
+  width: 60%;
+  margin-left: 100px;
+}
+
+.account-logo {
+  height: 100%;
+  width: 45%;
+  position: relative;
+  left: 70px;
+  /* background-image: url("./images/travel3.jpeg"); */
+}
+
+.account-logo:hover {
+  animation-name: spin;
+  animation-duration: 5000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#add-triplist-button {
+  height: 20px;
+}
+
+.css-circle {
+  margin-top: 2px;
+  margin-bottom: 2%;
+  width: 50px;
+  height: 50px;
+  padding: 0px;
+  background: var(--bg-about);
+  color: var(--bg-contact);
+  text-align: center;
+  transition: background 0.2s linear;
+  transition: color 0.2s linear;
+}
+
+.css-circle:hover {
+  background: linear-gradient(to right, blue, rgb(61, 61, 194));
+  cursor: pointer;
+}
+
+.minus-sign {
+  line-height: 0.9em;
+  margin-bottom: 1px;
+}
+
+.plus-sign {
+  line-height: 1.1em;
+  margin-bottom: 1px;
+}
+
+.minus-sign:hover,
+.plus-sign:hover {
+  color: var(--text-light);
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+#trip-list-single {
+  width: 400px;
+  margin: 10px;
+  background-color: var (var(--bg-about));
+  border-radius: 20px;
+  border: solid;
+}
+
+#triplist-home {
+  display: flex;
+  flex-direction: row;
+  overflow-y: scroll;
+  opacity: 0.9;
+}
+
+#triplist-single:hover {
+  color: var(--text-light);
+  background-color: var(--bg-light);
+}
+
+.footer-block {
+  width: 150px;
+  height: 40px;
+  background-image: url("./images/travel1.jpeg") no-repeat center;
+  background-size: 40px;
+}
+
+.footer-img {
+  width: 30px;
+  height: 40px;
+  background-image: url("./images/travel4.jpeg") no-repeat center;
+}
+
+.modal {
+  position: absolute;
+  top: 70vh;
+  left: 65%;
+  width: 30%;
+  margin-bottom: 20px;
+  background: var(--bg-light);
+  font-size: 1.5em;
+}
+
+.modal-main {
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: fixed;
+  width: 50%;
+  height: auto;
+  top: 50%;
+  transform: translate(-20%, -20%);
+  background: var(--bg-light);
+  background-size: cover;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+
+.location {
+  border: solid green;
+}
+
+.location-image {
+  display: flex;
+  flex-direction: column;
+}
+
+.location-description {
+  border: solid blue;
+}
+
+.triplist-image {
+  border: pink;
+  width: 100%;
+}
+
+#triplist-home {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+
 @media only screen and (min-width: 320px) {
   #main {
     overflow-y: hidden;
@@ -20,7 +486,7 @@
   }
   #triplist-home {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
   }
 
   header {
@@ -47,459 +513,5 @@
   .heading-tags h2 {
     font-size: 15px;
     margin-left: 150%;
-  }
-}
-
-@media only screen and (min-width: 801px) {
-  html,
-  body,
-  .app {
-    height: 100vh;
-  }
-
-  .action-image-container {
-    cursor: pointer;
-    width: 40%;
-    height: 60px;
-    display: flex;
-    text-align: center;
-    align-items: baseline;
-    position: relative;
-    top: -10px;
-  }
-
-  .action-image {
-    height: 45px;
-    object-fit: cover;
-  }
-  img.action-image {
-    cursor: pointer;
-  }
-
-
-  body {
-    margin: 0 auto;
-    font-size: 20px;
-    font-family: sans-serif;
-  }
-
-  div {
-    margin: auto;
-    text-align: center;
-  }
-
-  a,
-  h2,
-  h3,
-  h4 {
-    margin: 0 auto;
-    font-size: 20px;
-    font-family: sans-serif;
-    color: var(--text-dark);
-  }
-
-  img {
-    object-fit: cover;
-    text-align: center;
-  }
-
-  p {
-    margin-bottom: 1em;
-    font-family: sans-serif;
-    text-align: center;
-    margin-top: 5px;
-    margin-bottom: 5px;
-  }
-
-  header {
-    height: 20vh;
-    display: grid;
-    grid-template-columns: 2fr 4fr 2fr;
-    /* background-image: url("./images/travel6.jpeg"); */
-    background-size: 20%;
-    background-repeat: no-repeat;
-    background-position-y: -10px;
-    background-position-x: 40px;
-    background-color: var(--bg-light);
-  }
-
-  header a {
-    text-decoration: none;
-    color: var(--text-dark);
-  }
-
-  form input {
-    height: 40px;
-    width: 70%;
-    margin: 10px;
-    color: var(--text-dark);
-    font-size: 20px;
-  }
-
-  form button {
-    height: 100%;
-    width: 100%;
-  }
-
-  form {
-    margin: auto;
-    border-radius: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    position: fixed;
-    width: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: var(--bg-soft);
-    background-size: cover;
-    max-width: 100%;
-    max-height: 100%;
-    opacity: 0.8;
-  }
-
-  button.back {
-    background: var(--bg-dark);
-    color: var(--text-light);
-    width: 30px;
-    height: 30px;
-    border-radius: 20px;
-    display: flex;
-    margin-left: 540px;
-    position: absolute;
-    top: 5px;
-    right: 10px;
-  }
-
-  button.back:hover {
-    background: var(--bg-light);
-    color: var(--text-dark);
-  }
-
-  label {
-    font-weight: bold;
-    color: var(--text-dark);
-  }
-
-  footer {
-    background: var(--bg-light);
-    height: 7vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  input {
-    font-size: 14px;
-    background-color: var(--bg-soft);
-  }
-
-  input:hover {
-    transition: background-color 2s;
-    background: var(--bg-grey);
-  }
-
-  button {
-    cursor: pointer;
-  }
-
-  button.submit,
-  button.update_button,
-  button.trip_button {
-    cursor: pointer;
-    margin: auto;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    font-size: 16px;
-    border-radius: 16px;
-    width: 120px;
-    color: var(--text-light);
-    background: var(--bg-dark);
-  }
-
-  button.submit:hover {
-    color: var (var(--text-dark));
-  }
-
-  button.submit:hover {
-    background: var(--bg-light);
-  }
-
-  #copyright {
-    text-align: center;
-    color: var(--text-light);
-  }
-
-  img.action-image {
-    cursor: pointer;
-  }
-
-  #trip-list-details {
-    height: 800px;
-    width: 90%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    background-image: url("./images/travel4.jpeg") no-repeat center;
-  }
-
-  #trip-list-details h1 {
-    text-align: center;
-  }
-
-  #triplist {
-    height: 60vh;
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    object-fit: contain;
-    margin-top: 180px;
-  }
-
-  #triplist h2 {
-    font-size: 50px;
-    margin-top: 20px;
-  }
-  #triplist p {
-    margin-top: 20px;
-    font-size: 25px;
-  }
-
-  .triplist-image {
-    margin-top: 15px;
-    width: 60%;
-    height: 300px;
-  }
-
-  #tripsContainer {
-    display: flex;
-    flex-wrap: wrap;
-    overflow: scroll;
-    width: 90%;
-    height: 500px;
-    margin-top: 210px;
-  }
-
-  .trip {
-    height: 70%;
-    display: flex;
-    justify-content: center;
-    padding: 2%;
-  }
-
-  .tripDetails {
-    height: 150%;
-  }
-
-  .three-buttons {
-    height: 30px;
-    cursor: pointer;
-    margin: auto;
-    font-size: 16px;
-    width: 120px;
-    color: var(--text-dark);
-    background: var(--bg-soft);
-  }
-
-  .trip-image {
-    width: 30%;
-    height: 140px;
-    margin-top: 4%;
-  }
-
-  #trip-button-group {
-    display: flex;
-    justify-content: center;
-  }
-
-  .main {
-    height: 95vh;
-    background: var(--bg-light);
-    /* background-image: url("./images/travel2.jpeg"); */
-  }
-
-  .heading-tags {
-    grid-column: 2;
-    flex-direction: column;
-    margin: -5px;
-  }
-
-  .heading-tags h1 {
-    text-align: center;
-    font-family: sans-serif;
-    font-size: 250%;
-    color: var(--text-light);
-    text-shadow: 2px 3px 5px black;
-    padding-top: 2px;
-    margin: 20px;
-  }
-
-  .heading-tags h2 {
-    font-size: 2em;
-    color: var(--text-light);
-    position: relative;
-    bottom: 20px;
-    font-family: sans-serif;
-    height: 20px;
-  }
-
-  #log-out {
-    align-self: center;
-    color: var(--text-light);
-    font-size: 1.5em;
-    width: 60%;
-    margin-left: 100px;
-  }
-
-  .account-logo {
-    height: 100%;
-    width: 45%;
-    position: relative;
-    left: 70px;
-    /* background-image: url("./images/travel3.jpeg"); */
-  }
-
-  .account-logo:hover {
-    animation-name: spin;
-    animation-duration: 5000ms;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-  }
-
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
-  #add-triplist-button {
-    height: 20px;
-  }
-
-  .css-circle {
-    margin-top: 2px;
-    margin-bottom: 2%;
-    width: 50px;
-    height: 50px;
-    padding: 0px;
-    background: var(--bg-about);
-    color: var(--bg-contact);
-    text-align: center;
-    transition: background 0.2s linear;
-    transition: color 0.2s linear;
-  }
-
-  .css-circle:hover {
-    background: linear-gradient(to right, blue, rgb(61, 61, 194));
-    cursor: pointer;
-  }
-
-  .minus-sign {
-    line-height: 0.9em;
-    margin-bottom: 1px;
-  }
-
-  .plus-sign {
-    line-height: 1.1em;
-    margin-bottom: 1px;
-  }
-
-  .minus-sign:hover,
-  .plus-sign:hover {
-    color: var(--text-light);
-  }
-
-  .tooltip {
-    position: relative;
-    display: inline-block;
-  }
-
-  .tooltip .tooltiptext {
-  }
-
-  .tooltip:hover .tooltiptext {
-    visibility: visible;
-  }
-
-  #trip-list-single {
-    width: 400px;
-    margin: 10px;
-    background-color: var (var(--bg-about));
-    border-radius: 20px;
-    border: solid;
-  }
-
-  #triplist-home {
-    display: flex;
-    flex-direction: row;
-    overflow-y: scroll;
-    opacity: 0.9;
-  }
-
-  #triplist-single:hover {
-    color: var(--text-light);
-    background-color: var(--bg-light);
-  }
-
-  .footer-block {
-    width: 150px;
-    height: 40px;
-    background-image: url("./images/travel1.jpeg") no-repeat center;
-    background-size: 40px;
-  }
-
-  .footer-img {
-    width: 30px;
-    height: 40px;
-    background-image: url("./images/travel4.jpeg") no-repeat center;
-  }
-
-  .modal {
-    position: absolute;
-    top: 70vh;
-    left: 65%;
-    width: 30%;
-    margin-bottom: 20px;
-    background: var(--bg-light);
-    font-size: 1.5em;
-  }
-
-  .modal-main {
-    display: flex;
-    margin: auto;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    position: fixed;
-    width: 50%;
-    height: auto;
-    top: 50%;
-    transform: translate(-20%, -20%);
-    background: var(--bg-light);
-    background-size: cover;
-    max-width: 100%;
-    max-height: 100%;
-  }
-
-  .display-block {
-    display: block;
-  }
-
-  .display-none {
-    display: none;
-  }
-
-  .location-image {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .triplist-image {
-    width: 100%;
   }
 }

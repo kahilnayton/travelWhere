@@ -112,8 +112,7 @@ class TripListDetails extends React.Component {
     console.log(locations)
 
     return (
-      <div className='main'>
-        <h2>there are no current trips</h2>
+      <div className='trip'>
         {currentTripList ?
           <div id='trip-list-details'>
             <div id='triplist'>
@@ -157,12 +156,12 @@ class TripListDetails extends React.Component {
                         show={this.state.showLocationDetails}
                         handleClose={this.hideLocationDetails}
                       />
-                      <h2>{location.place}</h2>
+                      <h2 className='location-place'>{location.place}</h2>
                       <div id='trip-button-group'>
                         <button className='three-buttons' type='button' onClick={() =>
-                          this.showModalUpdate(location.id)}>Update Location</button>
+                          this.showModalUpdate(location.id)}>Update</button>
                         <button className='three-buttons' type='button' onClick={() =>
-                          this.showLocationDetails(location.id)}>View Location</button>
+                          this.showLocationDetails(location.id)}>View</button>
                         
                         <UpdateLocationForm
                           locations={this.state.locations}
@@ -174,7 +173,7 @@ class TripListDetails extends React.Component {
                           selectedLocation={this.state.selectedLocation}
                         />
                         <button className='three-buttons' type='button' onClick={() => { this.deleteLocation(location.id) }}>
-                          Delete Location
+                          Delete
                       </button>
                         </div>
                     </div>
