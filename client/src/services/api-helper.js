@@ -82,7 +82,7 @@ export const getLocationsByTripList = async (tripListId, tripListData) => {
 // Update trip list
 export const putTripList = async (id, tripListData) => {
   const resp = await api.put(`/triplists${id}`, tripListData)
-  return resp.data.tripList
+  return resp.data.triplist
 }
 
 // Delete a trip list
@@ -99,7 +99,8 @@ export const postLocation = async (tripListId, locationData) => {
 
 // Update location - put
 export const putLocation = async (locationId, locationData) => {
-  const resp = await api.put(`/locationList/anything/locations/${locationId}`, locationData)
+  debugger;
+  const resp = await api.put(`/locationlists/yeah/locations/${locationId}`, locationData)
   return resp.data.location
 }
 

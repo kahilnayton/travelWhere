@@ -41,15 +41,14 @@ class App extends React.Component {
 
   // Get trip lists
   getTripLists = async () => {
-
     if (this.state.currentUser) {
       const tripLists = await getTripListsByUser(this.state.currentUser.id);
       this.setState({ tripLists });
     }
-    
-  //   else {
-  //     this.setState({ tripLists: [] });
-  //   }
+
+    //   else {
+    //     this.setState({ tripLists: [] });
+    //   }
   };
 
   handleVerify = async () => {
@@ -116,7 +115,7 @@ class App extends React.Component {
   updateTripList = async (id, triplist) => {
     const newTripList = await putTripList(id, triplist);
     this.setState(prevState => ({
-      tripList: prevState.tripLists.map(triplist =>
+      tripLists: prevState.tripLists.map(triplist =>
         triplist.id === parseInt(id) ? newTripList : triplist
       )
     }));
@@ -133,26 +132,22 @@ class App extends React.Component {
     this.props.history.push("../");
   };
 
-
-
   render() {
-    console.log(this.state)
+    // console.log(this.state)
     const { currentUser } = this.state;
     return (
       <div className="app">
-        <Link to='/'>Welcome to travel where</Link>
-        <Header
-          currentUser={currentUser}
-          handleLogout={this.handleLogout}
-        />
+        <Link to="/">
+          <div className="data-container">
+            <span className="btn">Travel Where?</span>
+          </div>
+        </Link>
+        <Header currentUser={currentUser} handleLogout={this.handleLogout} />
 
         <Route
           path="/"
           render={() => (
-            <Home
-              currentUser={currentUser}
-              tripLists={this.state.tripLists}
-            />
+            <Home currentUser={currentUser} tripLists={this.state.tripLists} />
           )}
         />
 
@@ -176,21 +171,21 @@ class App extends React.Component {
           )}
         />
 
-          <Route
-            path="/tripLists/:id"
-            render={props => {
-              const id = props.match.params.id;
-              const currentTripList = this.state.tripLists.find(tl => {
-                return tl.id === parseInt(id);
-              });
-              return (
-                <TripListDetails
-                  currentTripList={currentTripList}
-                  deleteTripList={this.deleteList}
-                />
-              );
-            }}
-          />
+        <Route
+          path="/tripLists/:id"
+          render={props => {
+            const id = props.match.params.id;
+            const currentTripList = this.state.tripLists.find(tl => {
+              return tl.id === parseInt(id);
+            });
+            return (
+              <TripListDetails
+                currentTripList={currentTripList}
+                deleteTripList={this.deleteList}
+              />
+            );
+          }}
+        />
 
         <Route
           path="/create_tripLists"
@@ -206,7 +201,7 @@ class App extends React.Component {
         <Route
           exact
           path="/update_tripList/:id"
-          render={(props) => {
+          render={props => {
             const id = props.match.params.id;
             return (
               <UpdateTripListForm

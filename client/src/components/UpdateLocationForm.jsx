@@ -11,7 +11,7 @@ export default class UpdateLocationForm extends React.Component {
   }
 
   setFormData = (id) => {
-    if (this.props.trips.length) {
+    if (this.props.locations.length) {
       const {
         place,
         address,
@@ -19,7 +19,7 @@ export default class UpdateLocationForm extends React.Component {
         return_date,
         image_link,
         ...otherData
-      } = this.props.location.find(location => {
+      } = this.props.locations.find(location => {
         return location.id === id
       })
       this.setState({

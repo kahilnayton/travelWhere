@@ -12,8 +12,8 @@ import LocationDetails from './LocationDetails';
 class TripListDetails extends React.Component {
   state = {
     locations: [],
-    updateTrips: [],
-    tripFormData: {
+    updateLocation: [],
+    locationFormData: {
       place: '',
       address: '',
       departure_date: '',
@@ -22,8 +22,8 @@ class TripListDetails extends React.Component {
     },
     show: false,
     showUpdate: false,
-    showTripDetails: false,
-    selectedTrip: 0
+    showLocationDetails: false,
+    selectedLocation: 0
   }
 
   async componentDidMount() {
@@ -40,19 +40,19 @@ class TripListDetails extends React.Component {
   };
 
   showModalUpdate = (id) => {
-    this.setState({ showUpdate: true, selectedTrip: id });
+    this.setState({ showUpdate: true, selectedLocation: id });
   };
 
   hideModalUpdate = () => {
     this.setState({ showUpdate: false });
   };
 
-  showTripDetails = (id) => {
-    this.setState({ showTripDet: true, selectedTrip: id })
+  showLocationDetails = (id) => {
+    this.setState({ showLocationDetails: true, selectedLocation: id })
   };
 
-  hideTripDetails = () => {
-    this.setState({ showTripDet: false })
+  hideLocationDetails = () => {
+    this.setState({ showLocationDetails: false })
   };
 
   // Get Locations by a trip
@@ -64,7 +64,6 @@ class TripListDetails extends React.Component {
     else {
       this.setState({ locations: [] })
     }
-    console.log(this.state.locations);
   }
 
   // Handle Change
@@ -87,7 +86,7 @@ class TripListDetails extends React.Component {
     this.props.history.push('/');
   }
 
-  // /// Update Gift /////////////
+  // /// Update Location /////////////
   updateLocation = async (id, data) => {
     const newLocation = await putLocation(id, data);
     this.setState(prevState => ({
@@ -156,13 +155,19 @@ class TripListDetails extends React.Component {
                         show={this.state.showLocationDetails}
                         handleClose={this.hideLocationDetails}
                       />
-                      <h2 className='location-place'>{location.place}</h2>
+                      <h2 className='location-place'>{locations.place}</h2>
                       <div id='trip-button-group'>
+
                         <button className='three-buttons' type='button' onClick={() =>
                           this.showModalUpdate(location.id)}>Update</button>
+
                         <button className='three-buttons' type='button' onClick={() =>
                           this.showLocationDetails(location.id)}>View</button>
-                        
+
+                        <button className='three-buttons' type='button' onClick={() => { this.deleteLocation(location.id) }}>
+                          Delete
+                      </button>
+
                         <UpdateLocationForm
                           locations={this.state.locations}
                           locationId={location.id}
@@ -172,10 +177,7 @@ class TripListDetails extends React.Component {
                           locationFormData={this.state.locationFormData}
                           selectedLocation={this.state.selectedLocation}
                         />
-                        <button className='three-buttons' type='button' onClick={() => { this.deleteLocation(location.id) }}>
-                          Delete
-                      </button>
-                        </div>
+                      </div>
                     </div>
                   </div>
                 ))

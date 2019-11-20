@@ -2,6 +2,7 @@
   --text-light: rgb(255, 255, 255);
   --text-grey: rgb(230, 230, 230);
   --text-soft: rgb(211, 248, 255);
+  --text-color: rgb(61, 163, 184);
   --text-dark: rgb(0, 0, 0);
   --bg-light: rgb(255, 255, 255);
   --bg-grey: rgb(230, 230, 230);
@@ -12,10 +13,115 @@
   --text-shadow: 5px 5px 0.2rem rgba(0, 0, 0, 0.25);
 }
 
+body {
+  margin: 0;
+  padding: 0;
+}
+/* Travel where effect  */
+.btn { 
+  cursor: pointer;
+  position: relative;
+  padding: 10px 20px;
+  background: white;
+  font-size: 28px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  transition: all 1s;
+}
+.btn:after, .btn:before {
+  content: " ";
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  border: 0px solid #fff;
+  transition: all 1s;
+}
+.btn:after {
+  top: -1px;
+  left: -1px;
+  border-top: 5px solid black;
+  border-left: 5px solid black;
+}
+.btn:before {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 5px solid black;
+  border-right: 5px solid black;
+}
+.btn:hover {
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.btn:hover:before, .btn:hover:after {
+  width: 100%;
+  height: 100%;
+}
+
+.data-container {
+  background: #ffebee;
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 html,
 body,
 .app {
   height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.welcome {
+  color: var(--text-color);
+  font-size: 30px;
+  padding: 10px 20px;
+  background: var(--bg-light);
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  transition: all 1s;
+}
+
+.welcome:after,
+.welcome:before {
+  content: " ";
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  border: solid;
+  transition: all 1s;
+}
+.welcome:after {
+  bottom: -1px;
+  right: -1px;
+  border-top: 5px;
+  border-left: 5px;
+}
+.welcome:before {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 5px; 
+  border-right: 5px;
+}
+
+.welcome:hover {
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.welcome:hover:before,
+.welcome:hover:after {
+  width: 100%;
+  height: 100%;
+}
+
+.welcome-container {
+  background: var(--bg-light);
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .action-image-container {
@@ -56,6 +162,7 @@ h4 {
   font-size: 20px;
   font-family: sans-serif;
   color: var(--text-dark);
+  text-decoration: none;
 }
 
 img {
@@ -460,7 +567,16 @@ img.action-image {
 
 .location-image {
   display: flex;
+  justify-content: center;
   flex-direction: column;
+  object-fit: contain;
+  width: 40%;
+}
+
+img.location-image {
+  display: flex;
+
+  border: solid;
 }
 
 .location-description {
@@ -476,7 +592,6 @@ img.action-image {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr;
 }
-
 
 @media only screen and (min-width: 320px) {
   #main {

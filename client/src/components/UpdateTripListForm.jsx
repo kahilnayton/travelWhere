@@ -28,7 +28,7 @@ export default class UpdateTripListForm extends React.Component {
 
 
   setFormData = () => {
-    // debugger;
+    debugger;
     if (this.props.tripLists.length) {
       const {
         title,
