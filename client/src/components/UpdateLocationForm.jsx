@@ -11,7 +11,7 @@ export default class UpdateLocationForm extends React.Component {
   }
 
   setFormData = (id) => {
-    if (this.props.locations.length) {
+    if (this.props.locations) {
       const {
         place,
         address,
@@ -50,8 +50,8 @@ export default class UpdateLocationForm extends React.Component {
       departure_date,
       return_date,
       image_link } = this.state;
-    const { show, handleClose, locationFormData } = this.props;
-    const showHideClassName = show ? 'modal display-block' : 'modal display-none';
+    const { showUpdate, handleClose, locationFormData } = this.props;
+    const showHideClassName = showUpdate ? 'modal display-block' : 'modal display-none';
     return (
       <div className={showHideClassName}>
         <form action="modal-main" onSubmit={(e) => {

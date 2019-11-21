@@ -5,37 +5,61 @@ import logoutpic from '../images/logout.jpg'
 
 export default function Header(props) {
   let username = '';
+  let divStyle = { display: 'none' };
   if (props.currentUser) username = props.currentUser.username[0].toUpperCase() +
     props.currentUser.username.slice(1);
+  if (props.currentUser) {
+    divStyle.display = '';
+  }
 
   return (
-    <header>
-      <div className='header-tags'>
-        <Link to='/'>
-          <h1>Trips</h1>
-        </Link>
+    <div>
+      <Link to="/">
+        <div className="data-container">
+          <div></div>
+          <span className="btn">Travel Where?</span>
+          <div>
+            <nav id='log-out'>
+              {
+                props.currentUser ?
+                  <a href='#' onClick={props.handleLogout}>
+                    <img className='account-logo' src={loginpic} alt="login-pic" />
+                  </a>
+                  :
+                  <Link to='/login'>
+                    <img className='account-logo' src={logoutpic} alt="logout-pic" />
+                  </Link>
+              }
+
+            </nav>
+
+          </div>
+        </div>
+      </Link>
+      <div className='header-container'>
+
+
+
         {
           props.currentUser ?
-            <h2>Welcome, {username}</h2>
+            <div>
+              <h2>Welcome, {username}</h2>
+              <Link to='/'>
+                <h1 className='trips-header'>My Trips</h1>
+              </Link>
+            </div>
             :
             <></>
         }
 
       </div>
+      <Link id='add-triplist-button' to='/create_tripLists'>
+        <div style={divStyle} class='cssCircle plusSign tooltip'>
+          <span class='tooltiptext'>Add Trip</span>
+        </div>
+      </Link>
 
-      <nav id='log-out'>
-        {
-          props.currentUser ?
-            <a href='#' onClick={props.handleLogout}>
-              <img className='account-logo' src={loginpic} alt="login-pic" />
-            </a>
-            :
-            <Link to='/login'>
-              <img className='account-logo' src={logoutpic} alt="logout-pic" />
-            </Link>
-        }
 
-      </nav>
-    </header>
+    </div>
   )
 }

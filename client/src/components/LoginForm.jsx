@@ -38,9 +38,10 @@ export default class LoginForm extends React.Component {
           value={this.state.password}
           onChange={this.handleChange}
         />
-        <button className='submit'>Submit</button>
+        <button className='submit'>Sign In</button>
+        <p> - or - </p>
         <Link to='/register'>
-          <button className='submit'></button>
+          <button className='submit'>Create Account</button>
 
         </Link>
         <br />

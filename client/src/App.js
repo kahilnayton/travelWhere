@@ -9,8 +9,15 @@ import {
   postTripListsByUser,
   postTripList,
   putTripList,
-  deleteTripList
+  deleteTripList,
+  currentTripListId
 } from "./services/api-helper";
+import {
+  DirectLink,
+  Element,
+  Events,
+  animateScroll as scroll, scrollSpy, scroller
+} from 'react-scroll'
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CreateTripListForm from "./components/CreateTripListForm";
@@ -23,6 +30,7 @@ import "./App.css";
 
 class App extends React.Component {
   state = {
+    currentTrip: null,
     currentUser: null,
     authErrorMessage: "",
     tripLists: [],
@@ -33,11 +41,24 @@ class App extends React.Component {
       travel_date: ""
     }
   };
-
+  
+  
   componentDidMount = async () => {
     await this.handleVerify();
     await this.getTripLists();
+    Events.scrollEvent.register('begin', function () {
+      console.log('begin', arguments)
+    })
+    this.scrollToTop = this.scrollToTop.bind(this);
   };
+
+  scrollToTop() {
+    scroller.scrollTo('scroll-to-element', {
+      duration: 800,
+      delay: 0
+    })
+  }
+
 
   // Get trip lists
   getTripLists = async () => {
@@ -49,6 +70,13 @@ class App extends React.Component {
     //   else {
     //     this.setState({ tripLists: [] });
     //   }
+  };
+  // get current
+  getCurrentTrip = async id => {
+    const currentTrip = await currentTripListId(id);
+    debugger;
+    const tripId = id;
+    this.setState({ currentTrip });
   };
 
   handleVerify = async () => {
@@ -137,11 +165,6 @@ class App extends React.Component {
     const { currentUser } = this.state;
     return (
       <div className="app">
-        <Link to="/">
-          <div className="data-container">
-            <span className="btn">Travel Where?</span>
-          </div>
-        </Link>
         <Header currentUser={currentUser} handleLogout={this.handleLogout} />
 
         <Route
@@ -179,10 +202,11 @@ class App extends React.Component {
               return tl.id === parseInt(id);
             });
             return (
-              <TripListDetails
-                currentTripList={currentTripList}
-                deleteTripList={this.deleteList}
-              />
+                <TripListDetails
+                  currentTripList={currentTripList}
+                  deleteTripList={this.deleteList}
+                  getCurrentTrip={this.getCurrentTrip}
+                />
             );
           }}
         />
@@ -209,6 +233,8 @@ class App extends React.Component {
                 tripListId={id}
                 tripListFormData={this.state.tripListFormData}
                 updateTripList={this.updateTripList}
+                currentTrip={this.state.currentTrip}
+                getCurrentTrip={this.getCurrentTrip}
               />
             );
           }}

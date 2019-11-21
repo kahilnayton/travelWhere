@@ -10,7 +10,8 @@ export default class UpdateTripListForm extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props, 'update mount')
+    // get single 
+    this.props.getCurrentTrip(this.props.tripListId)
     this.setFormData();
   }
 
@@ -28,17 +29,14 @@ export default class UpdateTripListForm extends React.Component {
 
 
   setFormData = () => {
-    debugger;
-    if (this.props.tripLists.length) {
+    if (this.props.currentTrip) {
+      debugger;
       const {
         title,
         description,
         image_link,
-        travel_date,
-        ...otherData
-      } = this.props.tripLists.find(tripList => {
-        return tripList === parseInt(this.props.tripListId)
-      })
+        travel_date
+      } = this.props.currentTrip
       this.setState({
         title,
         description,
@@ -97,10 +95,9 @@ export default class UpdateTripListForm extends React.Component {
             onChange={this.handleChange}
           />
           <br />
-          <button className='submit'>Sublmit</button>
+          <button className='submit'>Submit</button>
         </form>
       </div>
     )
-
   }
 }

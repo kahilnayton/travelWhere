@@ -2,11 +2,11 @@
   --text-light: rgb(255, 255, 255);
   --text-grey: rgb(230, 230, 230);
   --text-soft: rgb(211, 248, 255);
-  --text-color: rgb(61, 163, 184);
+  --text-color: #ffebee;
   --text-dark: rgb(0, 0, 0);
   --bg-light: rgb(255, 255, 255);
   --bg-grey: rgb(230, 230, 230);
-  --bg-soft: rgb(211, 248, 255);
+  --bg-soft: #ffebee;
   --bg-dark: #2d3436;
   --nav-shadow: 0 0px 10px rgba(0, 0, 0, 0.6);
   --element-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.25);
@@ -18,7 +18,7 @@ body {
   padding: 0;
 }
 /* Travel where effect  */
-.btn { 
+.btn {
   cursor: pointer;
   position: relative;
   padding: 10px 20px;
@@ -28,7 +28,8 @@ body {
   border-bottom-left-radius: 10px;
   transition: all 1s;
 }
-.btn:after, .btn:before {
+.btn:after,
+.btn:before {
   content: " ";
   width: 10px;
   height: 10px;
@@ -48,21 +49,15 @@ body {
   border-bottom: 5px solid black;
   border-right: 5px solid black;
 }
-.btn:hover {
-  border-top-right-radius: 0px;
-  border-bottom-left-radius: 0px;
-}
-.btn:hover:before, .btn:hover:after {
-  width: 100%;
-  height: 100%;
-}
 
 .data-container {
   background: #ffebee;
   height: 20vh;
-  display: flex;
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr;
   justify-content: center;
   align-items: center;
+  grid-gap: 10px;
 }
 
 html,
@@ -101,20 +96,10 @@ body,
 .welcome:before {
   bottom: -1px;
   right: -1px;
-  border-bottom: 5px; 
+  border-bottom: 5px;
   border-right: 5px;
 }
 
-.welcome:hover {
-  border-top-right-radius: 0px;
-  border-bottom-left-radius: 0px;
-}
-
-.welcome:hover:before,
-.welcome:hover:after {
-  width: 100%;
-  height: 100%;
-}
 
 .welcome-container {
   background: var(--bg-light);
@@ -181,8 +166,9 @@ p {
 header {
   height: 20vh;
   display: grid;
-  grid-template-columns: 2fr 4fr 2fr;
+  grid-template-columns: 2fr 2fr 2fr;
   /* background-image: url("./images/travel6.jpeg"); */
+  width: 100%;
   background-size: 20%;
   background-repeat: no-repeat;
   background-position-y: -10px;
@@ -193,6 +179,11 @@ header {
 header a {
   text-decoration: none;
   color: var(--text-dark);
+}
+
+.trips-header {
+  display: grid;
+  text-align: center;
 }
 
 form input {
@@ -224,7 +215,6 @@ form {
   background-size: cover;
   max-width: 100%;
   max-height: 100%;
-  opacity: 0.8;
 }
 
 button.back {
@@ -234,15 +224,11 @@ button.back {
   height: 30px;
   border-radius: 20px;
   display: flex;
+  text-align: center;
   margin-left: 540px;
   position: absolute;
   top: 5px;
   right: 10px;
-}
-
-button.back:hover {
-  background: var(--bg-light);
-  color: var(--text-dark);
 }
 
 label {
@@ -263,11 +249,6 @@ input {
   background-color: var(--bg-soft);
 }
 
-input:hover {
-  transition: background-color 2s;
-  background: var(--bg-grey);
-}
-
 button {
   cursor: pointer;
 }
@@ -286,6 +267,16 @@ button.trip_button {
   background: var(--bg-dark);
 }
 
+/* ******** Hover ************* */
+
+.trips-header:hover {
+  transform: scale(1.01);
+}
+
+.tooltip:hover {
+  transform: scale(1.01);
+}
+
 button.submit:hover {
   color: var (var(--text-dark));
 }
@@ -293,6 +284,79 @@ button.submit:hover {
 button.submit:hover {
   background: var(--bg-light);
 }
+
+.three-buttons:hover {
+  transform: scale(1.01);
+}
+
+.account-logo:hover {
+  animation-name: spin;
+  animation-duration: 5000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.css-circle:hover {
+  background: linear-gradient(to right, blue, rgb(61, 61, 194));
+  cursor: pointer;
+}
+
+.minus-sign:hover,
+.plus-sign:hover {
+  color: var(--text-light);
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+#triplist-single:hover {
+  color: var(--text-light);
+  background-color: var(--bg-light);
+}
+
+.btn:hover {
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.btn:hover:before,
+.btn:hover:after {
+  width: 100%;
+  height: 100%;
+}
+
+.welcome:hover {
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.welcome:hover:before,
+.welcome:hover:after {
+  width: 100%;
+  height: 100%;
+}
+
+img.action-image:hover {
+  transform: scale(1.01);
+}
+
+button.back:hover {
+  background: var(--bg-light);
+  color: var(--text-dark);
+}
+
+input:hover {
+  transition: background-color 2s;
+  background: var(--bg-light);
+}
+
+.triplist-title:hover {
+  transform: scale(1.01);
+}
+
+/* **** End **** */
+
 
 #copyright {
   text-align: center;
@@ -364,11 +428,13 @@ img.action-image {
   height: 30px;
   cursor: pointer;
   margin: auto;
+  border-radius: 20px;
   font-size: 16px;
   width: 120px;
   color: var(--text-dark);
   background: var(--bg-soft);
 }
+
 
 .trip-image {
   width: 30%;
@@ -379,6 +445,7 @@ img.action-image {
 #trip-button-group {
   display: flex;
   justify-content: center;
+  padding-bottom: 15px;
 }
 
 .main {
@@ -386,6 +453,8 @@ img.action-image {
   background: var(--bg-light);
   /* background-image: url("./images/travel2.jpeg"); */
 }
+
+
 
 .heading-tags {
   grid-column: 2;
@@ -422,18 +491,11 @@ img.action-image {
 
 .account-logo {
   height: 100%;
-  width: 45%;
-  position: relative;
+  width: 80px;
   left: 70px;
   /* background-image: url("./images/travel3.jpeg"); */
 }
 
-.account-logo:hover {
-  animation-name: spin;
-  animation-duration: 5000ms;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-}
 
 @keyframes spin {
   from {
@@ -461,11 +523,6 @@ img.action-image {
   transition: color 0.2s linear;
 }
 
-.css-circle:hover {
-  background: linear-gradient(to right, blue, rgb(61, 61, 194));
-  cursor: pointer;
-}
-
 .minus-sign {
   line-height: 0.9em;
   margin-bottom: 1px;
@@ -476,10 +533,6 @@ img.action-image {
   margin-bottom: 1px;
 }
 
-.minus-sign:hover,
-.plus-sign:hover {
-  color: var(--text-light);
-}
 
 .tooltip {
   position: relative;
@@ -487,11 +540,9 @@ img.action-image {
 }
 
 .tooltip .tooltiptext {
+  font-size: 40px;
 }
 
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-}
 
 #trip-list-single {
   width: 400px;
@@ -508,10 +559,6 @@ img.action-image {
   opacity: 0.9;
 }
 
-#triplist-single:hover {
-  color: var(--text-light);
-  background-color: var(--bg-light);
-}
 
 .footer-block {
   width: 150px;
@@ -562,7 +609,6 @@ img.action-image {
 }
 
 .location {
-  border: solid green;
 }
 
 .location-image {
@@ -570,17 +616,16 @@ img.action-image {
   justify-content: center;
   flex-direction: column;
   object-fit: contain;
-  width: 40%;
+  width: 100%;
+  padding-bottom: 5px;
 }
 
 img.location-image {
   display: flex;
 
-  border: solid;
 }
 
 .location-description {
-  border: solid blue;
 }
 
 .triplist-image {
@@ -591,7 +636,10 @@ img.location-image {
 #triplist-home {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 }
+
+/* ***** MOBILE ********** */
 
 @media only screen and (min-width: 320px) {
   #main {
@@ -604,28 +652,21 @@ img.location-image {
     grid-template-rows: 1fr 1fr 1fr 1fr;
   }
 
-  header {
-    display: flex;
-    flex-direction: row;
-    width: 500px;
-    height: 150px;
-  }
-
   form {
     margin: auto;
   }
 
   .account-logo {
-    margin-right: -800px;
-    width: 60px;
+    display: grid;
+    
   }
 
-  .heading-tags h1 {
+  .header-tags h1 {
     font-size: 30px;
     margin-left: 130%;
   }
 
-  .heading-tags h2 {
+  .header-tags h2 {
     font-size: 15px;
     margin-left: 150%;
   }
