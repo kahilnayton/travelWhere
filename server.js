@@ -24,9 +24,9 @@ app.use((err, req, res, next) => {
 })
 
 // Router handler
-app.use('/tripLists', TripListRouter);
-app.use('/tripLists/:tripListId/locations', LocationsRouter);
-app.use('/users/:userId/tripLists/', TripListRouter);
+app.use('/triplists', TripListRouter);
+app.use('/triplists/:triplistId/locations', LocationsRouter);
+// app.use('/users/:userId/triplists/', TripListRouter);
 // app.use('/tripLists/:tripListsId/locations/', LocationsRouter);
 
 app.listen(PORT, () => {

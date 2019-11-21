@@ -22,9 +22,9 @@ export default function Header(props) {
             <nav id='log-out'>
               {
                 props.currentUser ?
-                  <a href='#' onClick={props.handleLogout}>
+                  <Link to="/" onClick={() => props.handleLogout()}>
                     <img className='account-logo' src={loginpic} alt="login-pic" />
-                  </a>
+                  </Link>
                   :
                   <Link to='/login'>
                     <img className='account-logo' src={logoutpic} alt="logout-pic" />

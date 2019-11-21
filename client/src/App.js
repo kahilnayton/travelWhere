@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "./logo.svg";
-import { Route, withRouter, Link } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 import {
   registerUser,
   loginUser,
@@ -13,11 +13,14 @@ import {
   currentTripListId
 } from "./services/api-helper";
 import {
+  Link,
   DirectLink,
   Element,
   Events,
-  animateScroll as scroll, scrollSpy, scroller
-} from 'react-scroll'
+  animateScroll as scroll,
+  scrollSpy,
+  scroller
+} from "react-scroll";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CreateTripListForm from "./components/CreateTripListForm";
@@ -41,36 +44,42 @@ class App extends React.Component {
       travel_date: ""
     }
   };
-  
-  
+
   componentDidMount = async () => {
     await this.handleVerify();
     await this.getTripLists();
-    Events.scrollEvent.register('begin', function () {
-      console.log('begin', arguments)
-    })
+    Events.scrollEvent.register("begin", function() {
+      console.log("begin", arguments);
+    });
     this.scrollToTop = this.scrollToTop.bind(this);
   };
 
   scrollToTop() {
-    scroller.scrollTo('scroll-to-element', {
+    scroller.scrollTo("scroll-to-element", {
       duration: 800,
       delay: 0
-    })
+    });
   }
 
-
+  scrollToWithContainer() {
+    let goToContainer = new Promise((resolve, reject) => {
+      Events.scrollEvent.register("end", () => {
+        resolve();
+      });
+      Events.scrollEvent.remove("end");
+    });
+  }
   // Get trip lists
   getTripLists = async () => {
     if (this.state.currentUser) {
       const tripLists = await getTripListsByUser(this.state.currentUser.id);
       this.setState({ tripLists });
     }
-
-    //   else {
-    //     this.setState({ tripLists: [] });
-    //   }
+      else {
+        this.setState({ tripLists: [] });
+      }
   };
+  
   // get current
   getCurrentTrip = async id => {
     const currentTrip = await currentTripListId(id);
@@ -92,7 +101,7 @@ class App extends React.Component {
     } else {
       this.setState({ currentUser });
       await this.getTripLists();
-      this.props.history.push("./");
+      this.props.history.push("/");
     }
   };
   handleRegister = async registerData => {
@@ -101,18 +110,20 @@ class App extends React.Component {
       this.setState({ authErrorMessage: currentUser.error });
     } else {
       this.setState({ currentUser });
-      this.props.history.push("./");
+      this.props.history.push("/");
     }
   };
 
   handleLogout = () => {
     this.setState({ currentUser: null });
     localStorage.removeItem("authToken");
+    
     this.setState({
       currentUser: null,
       authErrorMessage: "",
       tripLists: []
     });
+    this.props.history.push('/login')
   };
 
   // Handle Change
@@ -167,49 +178,69 @@ class App extends React.Component {
       <div className="app">
         <Header currentUser={currentUser} handleLogout={this.handleLogout} />
 
-        <Route
-          path="/"
-          render={() => (
-            <Home currentUser={currentUser} tripLists={this.state.tripLists} />
-          )}
-        />
-
-        <Route
-          path="/login"
-          render={() => (
-            <LoginForm
-              handleLogin={this.handleLogin}
-              authErrorMessage={this.state.authErrorMassage}
-            />
-          )}
-        />
+        <Link // scrolling link
+          activeClass="active"
+          className="test1"
+          to="test1"
+          // spy={true}
+          smooth={true}
+          duration={500}
+        >
+          {this.state.tripLists &&
+            <Route
+              path="/"
+              render={() => (
+                <Home
+                  currentUser={currentUser}
+                  tripLists={this.state.tripLists}
+                />
+              )}
+            />}
+        </Link>
+        {!this.state.currentUser &&
+          <LoginForm
+          handleLogin={this.handleLogin}
+          authErrorMessage={this.state.authErrorMessage}
+        />}
+          <Route
+            path="/login"
+            render={() => (
+              <LoginForm
+                handleLogin={this.handleLogin}
+                authErrorMessage={this.state.authErrorMessage}
+              />
+            )}
+          />}
 
         <Route
           path="/register"
           render={() => (
             <RegisterForm
               handleRegister={this.handleRegister}
-              authErrorMessage={this.state.authErrorMassage}
+              authErrorMessage={this.state.authErrorMessage}
             />
           )}
         />
-
-        <Route
-          path="/tripLists/:id"
-          render={props => {
-            const id = props.match.params.id;
-            const currentTripList = this.state.tripLists.find(tl => {
-              return tl.id === parseInt(id);
-            });
-            return (
-                <TripListDetails
-                  currentTripList={currentTripList}
-                  deleteTripList={this.deleteList}
-                  getCurrentTrip={this.getCurrentTrip}
-                />
-            );
-          }}
-        />
+        {this.state.tripLists &&
+          <Element name="test1" className="element">
+            <Route
+              path="/triplists/:id"
+              render={props => {
+                const id = props.match.params.id;
+                const currentTripList = this.state.tripLists.find(tl => {
+                  return tl.id === parseInt(id);
+                });
+                return (
+                  <TripListDetails
+                    currentTripList={currentTripList}
+                    deleteTripList={this.deleteList}
+                    getCurrentTrip={this.getCurrentTrip}
+                  />
+                );
+              }}
+            />
+          </Element>
+        }
 
         <Route
           path="/create_tripLists"

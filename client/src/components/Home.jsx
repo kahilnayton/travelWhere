@@ -9,7 +9,7 @@ export default function Home(props) {
   return (
     <main className='main'>
       <div id='triplist-home'>
-        {props.tripLists.map(tl => (
+        {props.tripLists && props.tripLists.map(tl => (
           <div id='triplist-single'>
             
           <Link to={`/triplists/${tl.id}`}>

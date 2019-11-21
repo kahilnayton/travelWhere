@@ -6,12 +6,15 @@ const tripListRouter = Router({ mergeParams: true });
 
 // Route for all trip list user owns
 tripListRouter.get("/", async (req, res) => {
+  console.log(req.dataValues)
   const triplists = await TripList.findAll();
+  console.log(triplists)
   res.json({ triplists });
 });
 
 // get trip list by pk
 tripListRouter.get("/:id", async (req, res) => {
+  console.log(req.dataValues)
   const id = req.params.id;
   const triplists = await TripList.findAll({
     where: {
@@ -19,6 +22,14 @@ tripListRouter.get("/:id", async (req, res) => {
     }
   });
   res.json({ triplists });
+});
+
+
+tripListRouter.get("/id/:id", async (req, res) => {
+  const id = req.params.id;
+  const tripById = await TripList.findByPk(id)
+  console.log(tripById)
+  res.json({ tripById });
 });
 
 // create new trip list
@@ -32,7 +43,7 @@ tripListRouter.post("/", async (req, res) => {
 });
 
 // Update trip list
-tripListRouter.put("./:id", async (req, res) => {
+tripListRouter.put("/:id", async (req, res) => {
   const id = req.params.id;
   const data = req.body;
   const triplist = await TripList.findByPk(id);
