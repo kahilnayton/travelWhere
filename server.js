@@ -24,11 +24,12 @@ app.use((err, req, res, next) => {
 })
 
 // Router handler
-app.use('/triplists', TripListRouter);
-app.use('/triplists/:triplistId/locations', LocationsRouter);
-// app.use('/users/:userId/triplists/', TripListRouter);
-// app.use('/tripLists/:tripListsId/locations/', LocationsRouter);
+// app.use('/triplists', TripListRouter);
+// app.use('/triplists/:triplistId/locations', LocationsRouter);
+app.use('/users', userRouter);
+app.use('/users/:userId/triplists', TripListRouter);
+app.use('/users/:userId/triplists/:tripListId/locations', LocationsRouter);
 
 app.listen(PORT, () => {
-  console.log(`Express server listening on port${PORT}`);
+  console.log(`Express server listening on port ${PORT}`);
 });

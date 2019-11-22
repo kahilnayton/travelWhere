@@ -3,8 +3,14 @@ const { Location, TripList } = require('../models');
 const locations = Router({ mergeParams: true });
 
 locations.get('/', async (req, res) => {
-  const triplistId = req.params.tripListId;
-  const locations = await Location.findAll({ where: { triplistId } })
+  console.log(req.params)
+  const id = req.params.tripListId;
+  console.log("id",id)
+  const locations = await Location.findAll({
+    where: {
+      triplist_id: id
+    }
+  })
   res.json({locations})
 }) 
 

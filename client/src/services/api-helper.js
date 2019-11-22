@@ -38,7 +38,7 @@ export const verifyUser = async () => {
 // Trip List  - get all lists
 export const getTripListsByUser = async userId => {
   try {
-    const resp = await api.get(`/triplists/${userId}/`);
+    const resp = await api.get(`/users/${userId}/triplists`);
     return resp.data.triplists;
   } catch (err) {
     return { error: "Unable to retrieve trip lists" };
@@ -64,7 +64,7 @@ export const postTripList = async id => {
 // current trip list id
 export const currentTripListId = async id => {
   try {
-    const resp = await api.get(`/triplists/id/${id}`);
+    const resp = await api.get(`/triplists/${id}`);
     
     console.log(resp)
      
@@ -75,13 +75,11 @@ export const currentTripListId = async id => {
 };
 
 // Get location by list details
-export const getLocationsByTripList = async (tripListId, tripListData) => {
-  // debugger;
+export const getLocationsByTripList = async (userId,tripListId) => {
+  debugger;
   try {
     const resp = await api.get(
-      `/tripLists/${tripListId}/locations`,
-      tripListData
-    );
+      `users/${userId}/triplists/${tripListId}/locations`);
     return resp.data.locations; // returns the trip list details
   } catch (err) {
     return { error: "Unable to retrieve locations" };
