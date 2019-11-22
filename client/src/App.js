@@ -79,7 +79,7 @@ class App extends React.Component {
         this.setState({ tripLists: [] });
       }
   };
-  
+
   // get current
   getCurrentTrip = async id => {
     const currentTrip = await currentTripListId(id);
@@ -271,6 +271,7 @@ class App extends React.Component {
             );
           }}
         />
+        <a onClick={this.scrollToTop}>Back to my trips</a>
         <Footer />
       </div>
     );
