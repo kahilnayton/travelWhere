@@ -188,7 +188,7 @@ class App extends React.Component {
         >
           {this.state.tripLists &&
             <Route
-              path="/"
+              exact path="/"
               render={() => (
                 <Home
                   currentUser={currentUser}
@@ -210,7 +210,7 @@ class App extends React.Component {
                 authErrorMessage={this.state.authErrorMessage}
               />
             )}
-          />}
+          />
 
         <Route
           path="/register"
@@ -232,6 +232,7 @@ class App extends React.Component {
                 });
                 return (
                   <TripListDetails
+                    currentUser={this.state.currentUser}
                     currentTripList={currentTripList}
                     deleteTripList={this.deleteList}
                     getCurrentTrip={this.getCurrentTrip}

@@ -61,7 +61,8 @@ class TripListDetails extends React.Component {
   // Get Locations by a trip
   getLocations = async () => {
     if (this.props.currentTripList) {
-      const locations = await getLocationsByTripList(this.props.currentTripList.id);
+      debugger;
+      const locations = await getLocationsByTripList(this.props.currentUser.id,this.props.currentTripList.id);
       this.setState({ locations })
     }
     else {

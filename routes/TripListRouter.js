@@ -1,14 +1,14 @@
 const { Router } = require("express");
 const { User, Location, TripList, sequelize } = require("../models");
+const { restrict } = require('../services/auth')
+
 const { hashPassword, genToken, checkPassword } = require("../services/auth");
 
 const tripListRouter = Router({ mergeParams: true });
 
 // Route for all trip list user owns
-tripListRouter.get("/", async (req, res) => {
-  console.log(req.dataValues)
+tripListRouter.get("/", async (req, res, next) => {
   const triplists = await TripList.findAll();
-  console.log(triplists)
   res.json({ triplists });
 });
 
@@ -18,7 +18,7 @@ tripListRouter.get("/:id", async (req, res) => {
   const id = req.params.id;
   const triplists = await TripList.findAll({
     where: {
-      user_id: id
+      id: id
     }
   });
   res.json({ triplists });
@@ -43,13 +43,13 @@ tripListRouter.post("/", async (req, res) => {
 });
 
 // Update trip list
-tripListRouter.put("/:id", async (req, res) => {
-  const id = req.params.id;
-  const data = req.body;
-  const triplist = await TripList.findByPk(id);
-  await triplist.update(data);
-  res.json({ triplist });
-});
+// tripListRouter.put("/:id", async (req, res) => {
+//   const id = req.params.id;
+//   const data = req.body;
+//   const triplist = await TripList.findByPk(id);
+//   await triplist.update(data);
+//   res.json({ triplist });
+// });
 
 // delete
 tripListRouter.delete("/:id", async (req, res, next) => {
