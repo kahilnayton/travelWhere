@@ -6,11 +6,11 @@ export default class UpdateTripListForm extends React.Component {
     title: '',
     description: '',
     image_link: '',
-    travel_date: ''
+    travel_date: '',
+    displayErrors: ''
   }
 
   componentDidMount() {
-    // get single 
     this.props.getCurrentTrip(this.props.tripListId)
     this.setFormData();
   }
@@ -26,11 +26,18 @@ export default class UpdateTripListForm extends React.Component {
     this.setState({ [name]: value })
   }
 
+  handleSubmit = (e) => {
+    if (e.target.checkValidity()) {
+      this.setState({ displayErrors: true })
+      return
+    }
+    this.setState({ displayErrors: false });
+  }
 
 
-  setFormData = () => {
+
+  setFormData = (id) => {
     if (this.props.currentTrip) {
-      debugger;
       const {
         title,
         description,
@@ -47,13 +54,15 @@ export default class UpdateTripListForm extends React.Component {
   }
 
   render() {
-    const { title, description, image_link, travel_date } = this.state;
+    const { title, description, image_link, travel_date, displayErrors } = this.state;
     return (
       <div>
         <form onSubmit={(e) => {
           e.preventDefault();
-          this.props.UpdateTripList(this.props.tripListId, this.state);
-        }}>
+          this.props.updateTripList(this.props.tripListId, this.state);
+        }}
+          className={displayErrors ? 'displayErrors' : ''}
+        >
 
           <Link to='/'>
             <button className='back'>X</button>
@@ -61,11 +70,12 @@ export default class UpdateTripListForm extends React.Component {
 
           <label htmlFor="title">title</label>
           <input
-            type="text"
+            type='text'
             name='title'
             id='title'
             value={title}
             onChange={this.handleChange}
+            required
           />
           <br />
           <label htmlFor="description">description</label>
@@ -75,6 +85,7 @@ export default class UpdateTripListForm extends React.Component {
             id='description'
             value={description}
             onChange={this.handleChange}
+            required
           />
           <br />
           <label htmlFor="image_link">image_link</label>
@@ -84,6 +95,7 @@ export default class UpdateTripListForm extends React.Component {
             id='image_link'
             value={image_link}
             onChange={this.handleChange}
+            required
           />
           <br />
           <label htmlFor="travel_date">travel_date</label>
@@ -93,6 +105,7 @@ export default class UpdateTripListForm extends React.Component {
             id='travel_date'
             value={travel_date}
             onChange={this.handleChange}
+            required
           />
           <br />
           <button className='submit'>Submit</button>

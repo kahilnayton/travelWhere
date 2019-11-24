@@ -223,12 +223,26 @@ button.back {
   width: 30px;
   height: 30px;
   border-radius: 20px;
-  display: flex;
   text-align: center;
   margin-left: 540px;
   position: absolute;
-  top: 5px;
+  top: 9px;
   right: 10px;
+}
+
+.back-top {
+  cursor: pointer;
+
+}
+
+.bounce {
+  animation-name: bounce;
+}
+
+.animated {
+  animation-duration: 2.5;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
 }
 
 label {
@@ -496,7 +510,7 @@ img.action-image {
   /* background-image: url("./images/travel3.jpeg"); */
 }
 
-
+/* ****** animation *********** */
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -505,6 +519,14 @@ img.action-image {
     transform: rotate(360deg);
   }
 }
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+  40% {transform: translateY(-30px);}
+  60% {transform: translateY(-15px);}
+}
+
+
 
 #add-triplist-button {
   height: 20px;

@@ -42,7 +42,6 @@ class TripListDetails extends React.Component {
   };
 
   showModalUpdate = (id) => {
-    debugger;
     this.setState({ showUpdate: true, selectedLocation: id });
   };
 
@@ -61,7 +60,6 @@ class TripListDetails extends React.Component {
   // Get Locations by a trip
   getLocations = async () => {
     if (this.props.currentTripList) {
-      debugger;
       const locations = await getLocationsByTripList(this.props.currentUser.id,this.props.currentTripList.id);
       this.setState({ locations })
     }
@@ -148,7 +146,7 @@ class TripListDetails extends React.Component {
             </div>
 
             <div id='locations-container'>
-              {
+              { 
                 locations.map(location => (
                   <div className='location'>
                     <img className='location-image' src={location.image_link} alt="location-image" />

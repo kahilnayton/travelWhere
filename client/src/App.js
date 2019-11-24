@@ -55,11 +55,9 @@ class App extends React.Component {
   };
 
   scrollToTop() {
-    scroller.scrollTo("scroll-to-element", {
-      duration: 800,
-      delay: 0
-    });
-  }
+    scroll.scrollToTop();
+    }
+  
 
   scrollToWithContainer() {
     let goToContainer = new Promise((resolve, reject) => {
@@ -83,7 +81,6 @@ class App extends React.Component {
   // get current
   getCurrentTrip = async id => {
     const currentTrip = await currentTripListId(id);
-    debugger;
     const tripId = id;
     this.setState({ currentTrip });
   };
@@ -182,7 +179,7 @@ class App extends React.Component {
           activeClass="active"
           className="test1"
           to="test1"
-          // spy={true}
+          spy={true}
           smooth={true}
           duration={500}
         >
@@ -271,7 +268,7 @@ class App extends React.Component {
             );
           }}
         />
-        <a onClick={this.scrollToTop}>Back to my trips</a>
+        <a className='back-top' onClick={this.scrollToTop}>Back to my trips</a>
         <Footer />
       </div>
     );
