@@ -46,6 +46,7 @@ tripListRouter.post("/", async (req, res) => {
 tripListRouter.put("/:id", async (req, res) => {
   const id = req.params.id;
   const data = req.body;
+  console.log(req.body)
   const triplist = await TripList.findByPk(id);
   await triplist.update(data);
   res.json({ triplist });
@@ -53,6 +54,7 @@ tripListRouter.put("/:id", async (req, res) => {
 
 // delete
 tripListRouter.delete("/:id", async (req, res, next) => {
+
   const id = req.params.id;
   const triplist = await TripList.findByPk(id);
   try {
