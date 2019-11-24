@@ -27,7 +27,7 @@ app.use((err, req, res, next) => {
 // app.use('/triplists', TripListRouter);
 // app.use('/triplists/:triplistId/locations', LocationsRouter);
 app.use('/users', userRouter);
-app.use('/users/:tripListId/triplists/', TripListRouter);
+app.use('/users/:userId/triplists', TripListRouter);
 app.use('/users/:userId/triplists/:tripListId/locations', LocationsRouter);
 
 // app.use('/triplists', TriplistRouter);

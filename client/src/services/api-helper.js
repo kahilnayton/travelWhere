@@ -35,6 +35,9 @@ export const verifyUser = async () => {
   return false;
 };
 
+
+// ******* TripsLists *************
+
 // Trip List  - get all lists
 export const getTripListsByUser = async userId => {
   try {
@@ -49,6 +52,13 @@ export const getTripListsByUser = async userId => {
 export const postTripListsByUser = async (userId, tripListData) => {
   const resp = await api.post(`/users/${userId}/triplists`, tripListData);
   return resp.data.triplists;
+};
+
+
+// Delete a trip list
+export const deleteTripList = async (id, tripListData) => {
+  const resp = await api.put(`/triplists/${id}`);
+  return resp.data.locations;
 };
 
 // Retrieve a trip list
@@ -82,17 +92,15 @@ export const getLocationsByTripList = async (userId,tripListId) => {
   }
 };
 
+
 // Update trip list
 export const putTripList = async (userId ,id, tripListData) => {
   const resp = await api.put(`/users/${userId}/triplists/${id}`, tripListData);
   return resp.data.triplist;
 };
 
-// Delete a trip list
-export const deleteTripList = async (id, tripListData) => {
-  const resp = await api.put(`/triplists/${id}`);
-  return resp.data.locations;
-};
+
+// ******* Locations ************
 
 // Create location
 export const postLocation = async (tripListId, locationData) => {
