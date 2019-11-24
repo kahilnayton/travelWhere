@@ -48,6 +48,7 @@ class App extends React.Component {
   componentDidMount = async () => {
     await this.handleVerify();
     await this.getTripLists();
+    await this.fillTripListFormData(this.state.currentUser.id)
     Events.scrollEvent.register("begin", function() {
       console.log("begin", arguments);
     });
@@ -85,6 +86,10 @@ class App extends React.Component {
     this.setState({ currentTrip });
   };
 
+  fillTripListFormData = async (id) => {
+    const currentTrip = await currentTripListId(this.state.currentUser, id);
+    console.log(currentTrip)
+  }
   handleVerify = async () => {
     const currentUser = await verifyUser();
     if (currentUser) this.setState({ currentUser });
@@ -150,7 +155,8 @@ class App extends React.Component {
   // Update trip list
   updateTripList = async (id, triplist) => {
     debugger;
-    const newTripList = await putTripList(id, triplist);
+    const userId = this.state.currentUser.id
+    const newTripList = await putTripList(userId,id, triplist);
     this.setState(prevState => ({
       tripLists: prevState.tripLists.map(triplist =>
         triplist.id === parseInt(id) ? newTripList : triplist
@@ -220,6 +226,7 @@ class App extends React.Component {
           )}
         />
         {this.state.tripLists &&
+          <>
           <Element name="test1" className="element">
             <Route
               path="/triplists/:id"
@@ -239,36 +246,41 @@ class App extends React.Component {
               }}
             />
           </Element>
-        }
+        
 
-        <Route
-          path="/create_tripLists"
-          render={() => (
-            <CreateTripListForm
-              createTripList={this.createTripList}
-              handleChange={this.handleChange}
-              currentUser={currentUser}
-              tripListFormData={this.state.tripListFormData}
-            />
-          )}
-        />
-        <Route
-          exact
-          path="/update_tripList/:id"
-          render={props => {
-            const id = props.match.params.id;
-            return (
-              <UpdateTripListForm
-                tripLists={this.state.tripLists}
-                tripListId={id}
+          <Route
+            path="/create_tripLists"
+            render={() => (
+              <CreateTripListForm
+                createTripList={this.createTripList}
+                handleChange={this.handleChange}
+                currentUser={currentUser}
                 tripListFormData={this.state.tripListFormData}
-                updateTripList={this.updateTripList}
-                currentTrip={this.state.currentTrip}
-                getCurrentTrip={this.getCurrentTrip}
               />
-            );
-          }}
-        />
+            )}
+          />
+        
+        
+          <Route
+            exact
+            path="/update_tripList/:id"
+            render={props => {
+              const id = props.match.params.id;
+              const currentTripList = this.state.tripLists.find(tl => {
+                return tl.id === parseInt(id);
+              });
+              return (
+                <UpdateTripListForm
+                  tripLists={this.state.tripLists}
+                  tripListId={id}
+                  currentTripList={currentTripList}
+                  updateTripList={this.updateTripList}
+                />
+              );
+            }}
+          />
+          </>
+        }
         <a className='back-top' onClick={this.scrollToTop}>Back to my trips</a>
         <Footer />
       </div>

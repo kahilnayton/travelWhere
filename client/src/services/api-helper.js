@@ -62,9 +62,9 @@ export const postTripList = async id => {
 };
 
 // current trip list id
-export const currentTripListId = async id => {
+export const currentTripListId = async (userId,id) => {
   try {
-    const resp = await api.get(`/triplists/${id}`);
+    const resp = await api.get(`/users/${userId}/triplists/${id}`);
     return resp.data.triplists.id;
   } catch (err) {
     return { error: "Unable to retrieve Trips Id" };
@@ -83,8 +83,8 @@ export const getLocationsByTripList = async (userId,tripListId) => {
 };
 
 // Update trip list
-export const putTripList = async (id, tripListData) => {
-  const resp = await api.put(`/triplists/${id}`, tripListData);
+export const putTripList = async (userId ,id, tripListData) => {
+  const resp = await api.put(`/users/${userId}/triplists/${id}`, tripListData);
   return resp.data.triplist;
 };
 
