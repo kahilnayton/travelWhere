@@ -30,14 +30,6 @@ export default class UpdateTripListForm extends React.Component {
   setFormData = (id) => {
     debugger;
     const { title, description, image_link, travel_date } = this.props.currentTripList;
-      // const {
-      //   title,
-      //   description,
-      //   image_link,
-      //   travel_date
-      // } = this.props.currentTrip.find(trip => {
-      //   return trip.id === parseInt(this.props.tripListId)
-      // })
       this.setState({
         title,
         description,

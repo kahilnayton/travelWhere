@@ -45,17 +45,18 @@ export const getTripListsByUser = async userId => {
   }
 };
 
-// Create Trip List
+
 export const postTripListsByUser = async (userId, tripListData) => {
   const resp = await api.post(`/users/${userId}/triplists`, tripListData);
   return resp.data.triplists;
 };
 
-// Retrieve a trip list
-export const postTripList = async id => {
+// Create a trip list
+export const postTripList = async (userId,data) => {
   try {
-    const resp = await api.get(`/triplists/${id}`);
-    return resp.data.triplists;
+    debugger;
+    const resp = await api.post(`/users/${userId}/triplists`,data);
+    return resp.data.triplist;
   } catch (err) {
     return { error: "Unable to retrieve Trips" };
   }
@@ -89,9 +90,9 @@ export const putTripList = async (userId ,id, tripListData) => {
 };
 
 // Delete a trip list
-export const deleteTripList = async (id, tripListData) => {
-  const resp = await api.put(`/triplists/${id}`);
-  return resp.data.locations;
+export const deleteTripList = async (userId,id) => {
+  const resp = await api.delete(`/users/${userId}/triplists/${id}`);
+  return resp.data;
 };
 
 // Create location
