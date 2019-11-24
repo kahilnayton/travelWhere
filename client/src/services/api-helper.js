@@ -35,6 +35,9 @@ export const verifyUser = async () => {
   return false;
 };
 
+
+// ******* TripsLists *************
+
 // Trip List  - get all lists
 export const getTripListsByUser = async userId => {
   try {
@@ -82,6 +85,7 @@ export const getLocationsByTripList = async (userId,tripListId) => {
     return { error: "Unable to retrieve locations" };
   }
 };
+
 
 // Update trip list
 export const putTripList = async (userId ,id, tripListData) => {
