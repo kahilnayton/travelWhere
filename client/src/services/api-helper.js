@@ -84,7 +84,7 @@ export const getLocationsByTripList = async (userId,tripListId) => {
 
 // Update trip list
 export const putTripList = async (id, tripListData) => {
-  const resp = await api.put(`/triplists${id}`, tripListData);
+  const resp = await api.put(`/triplists/${id}`, tripListData);
   return resp.data.triplist;
 };
 

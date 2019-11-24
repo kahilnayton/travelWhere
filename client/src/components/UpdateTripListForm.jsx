@@ -11,7 +11,7 @@ export default class UpdateTripListForm extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getCurrentTrip(this.props.tripListId)
+    // this.props.getCurrentTrip(this.props.tripListId)
     this.setFormData();
   }
 
@@ -26,15 +26,6 @@ export default class UpdateTripListForm extends React.Component {
     this.setState({ [name]: value })
   }
 
-  handleSubmit = (e) => {
-    if (e.target.checkValidity()) {
-      this.setState({ displayErrors: true })
-      return
-    }
-    this.setState({ displayErrors: false });
-  }
-
-
 
   setFormData = (id) => {
     if (this.props.currentTrip) {
@@ -43,7 +34,9 @@ export default class UpdateTripListForm extends React.Component {
         description,
         image_link,
         travel_date
-      } = this.props.currentTrip
+      } = this.props.currentTrip.find(trip => {
+        return trip.id === parseInt(this.props.tripListId)
+      })
       this.setState({
         title,
         description,

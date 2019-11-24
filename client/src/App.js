@@ -149,6 +149,7 @@ class App extends React.Component {
 
   // Update trip list
   updateTripList = async (id, triplist) => {
+    debugger;
     const newTripList = await putTripList(id, triplist);
     this.setState(prevState => ({
       tripLists: prevState.tripLists.map(triplist =>

@@ -24,7 +24,7 @@ tripListRouter.get("/:id", async (req, res) => {
   res.json({ triplists });
 });
 
-
+// Get current trip id
 tripListRouter.get("/id/:id", async (req, res) => {
   const id = req.params.id;
   const tripById = await TripList.findByPk(id)
@@ -43,13 +43,13 @@ tripListRouter.post("/", async (req, res) => {
 });
 
 // Update trip list
-// tripListRouter.put("/:id", async (req, res) => {
-//   const id = req.params.id;
-//   const data = req.body;
-//   const triplist = await TripList.findByPk(id);
-//   await triplist.update(data);
-//   res.json({ triplist });
-// });
+tripListRouter.put("/:id", async (req, res) => {
+  const id = req.params.id;
+  const data = req.body;
+  const triplist = await TripList.findByPk(id);
+  await triplist.update(data);
+  res.json({ triplist });
+});
 
 // delete
 tripListRouter.delete("/:id", async (req, res, next) => {
