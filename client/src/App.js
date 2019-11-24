@@ -62,7 +62,7 @@ class App extends React.Component {
     //   });
     //   this.scrollToTop = this.scrollToTop.bind(this);
     // }
-  }
+  // }
 
   scrollToTop() {
     scroll.scrollToTop();
