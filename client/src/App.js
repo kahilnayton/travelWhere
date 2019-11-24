@@ -48,11 +48,21 @@ class App extends React.Component {
   componentDidMount = async () => {
     await this.handleVerify();
     await this.getTripLists();
+
     Events.scrollEvent.register("begin", function() {
       console.log("begin", arguments);
     });
     this.scrollToTop = this.scrollToTop.bind(this);
   };
+
+    //   if (this.tripLists) {
+    //   await this.fillTripListFormData(this.state.currentUser.id)
+    //   Events.scrollEvent.register("begin", function () {
+    //     console.log("begin", arguments);
+    //   });
+    //   this.scrollToTop = this.scrollToTop.bind(this);
+    // }
+  }
 
   scrollToTop() {
     scroll.scrollToTop();
