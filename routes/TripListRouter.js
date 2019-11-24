@@ -34,11 +34,13 @@ tripListRouter.get("/id/:id", async (req, res) => {
 
 // create new trip list
 tripListRouter.post("/", async (req, res) => {
-  const data = req.body;
-  const userId = req.params.userId;
-  const user = await User.findByPk(userId);
-  const triplist = await TripList.create(data);
-  triplist.setUser(user);
+  const { title, description, image_url, travel_date} = req.body;
+  const triplist = await TripList.create({
+    title,
+    description,
+    image_url,
+    travel_date
+  });
   res.json({ triplist });
 });
 
@@ -53,13 +55,13 @@ tripListRouter.put("/:id", async (req, res) => {
 });
 
 // delete
-tripListRouter.delete("/:id", async (req, res, next) => {
+tripListRouter.delete("/:id", async (req, res) => {
 
   const id = req.params.id;
   const triplist = await TripList.findByPk(id);
   try {
-    const post = await triplist.destroy();
-    res.json(triplist);
+    const deletedTriplist = await triplist.destroy();
+    res.json(deletedTriplist);
   } catch (e) {
     next(e);
   }
