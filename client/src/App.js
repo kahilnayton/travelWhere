@@ -1,5 +1,6 @@
 import React from "react";
 import arrow from "./images/arrow-up.png";
+import logo from "./images/login.jpg";
 import { Route, withRouter } from "react-router-dom";
 import {
   registerUser,
@@ -53,6 +54,7 @@ class App extends React.Component {
       console.log("begin", arguments);
     });
     this.scrollToTop = this.scrollToTop.bind(this);
+    
   };
   //   if (this.tripLists) {
   //   await this.fillTripListFormData(this.state.currentUser.id)
@@ -140,7 +142,7 @@ class App extends React.Component {
       }
     }));
   };
-  ///
+
 
   // Create trip list
   createTripList = async userId => {

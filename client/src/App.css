@@ -11,6 +11,9 @@
   --nav-shadow: 0 0px 10px rgba(0, 0, 0, 0.6);
   --element-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.25);
   --text-shadow: 5px 5px 0.2rem rgba(0, 0, 0, 0.25);
+
+  --font-prime: 'Raleway', sans-serif;
+  --font-section: 'Open Sans', sans-serif; 
 }
 
 body {
@@ -130,7 +133,7 @@ img.action-image {
 body {
   margin: 0 auto;
   font-size: 20px;
-  font-family: sans-serif;
+  font-family: var(--font-prime);
 }
 
 div {
@@ -144,7 +147,7 @@ h3,
 h4 {
   margin: 0 auto;
   font-size: 20px;
-  font-family: sans-serif;
+  font-family: var(--font-prime);
   color: var(--text-dark);
   text-decoration: none;
 }
@@ -156,7 +159,7 @@ img {
 
 p {
   margin-bottom: 1em;
-  font-family: sans-serif;
+  font-family: var(--font-prime);
   text-align: center;
   margin-top: 5px;
   margin-bottom: 5px;
@@ -246,7 +249,6 @@ button.back {
 }
 
 .stage {
-  border-bottom: 3px solid #444;
   display: flex;
   height: 330px;
   width: 100%;
@@ -487,7 +489,7 @@ img.action-image {
 
 .heading-tags h1 {
   text-align: center;
-  font-family: sans-serif;
+  font-family: var(--font-prime);
   font-size: 250%;
   color: var(--text-light);
   text-shadow: 2px 3px 5px black;
@@ -500,7 +502,7 @@ img.action-image {
   color: var(--text-light);
   position: relative;
   bottom: 20px;
-  font-family: sans-serif;
+  font-family: var(--font-prime);
   height: 20px;
 }
 
