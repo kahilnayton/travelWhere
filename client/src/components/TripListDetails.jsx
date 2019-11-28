@@ -10,35 +10,42 @@ import moment from 'moment';
 import LocationDetails from './LocationDetails';
 
 class TripListDetails extends React.Component {
-  state = {
-    locations: [],
-    updateLocation: [],
-    locationFormData: {
-      place: '',
-      address: '',
-      departure_date: '',
-      return_date: '',
-      image_link: ''
-    },
-    show: false,
-    showUpdate: false,
-    showLocationDetails: false,
-    selectedLocation: 0
+  constructor(props) {
+    super(props)
+    this.state = {
+      locations: [],
+      showModal: false,
+      updateLocation: [],
+      locationFormData: {
+        place: '',
+        address: '',
+        departure_date: '',
+        return_date: '',
+        image_link: ''
+      },
+      showUpdate: false,
+      showLocationDetails: false,
+      selectedLocation: 0
+    }
   }
 
   async componentDidMount() {
     await this.getLocations();
-    console.log(this.state, 'state of trip list details')
-    
+
   }
 
 
   showModal = () => {
-    this.setState({ show: true });
+    this.setState({
+      showModal: true
+    })
+    console.log(this.state)
   };
 
   hideModal = () => {
-    this.setState({ show: false });
+    this.setState({
+      show: false
+    });
   };
 
   showModalUpdate = (id) => {
@@ -60,7 +67,7 @@ class TripListDetails extends React.Component {
   // Get Locations by a trip
   getLocations = async () => {
     if (this.props.currentTripList) {
-      const locations = await getLocationsByTripList(this.props.currentUser.id,this.props.currentTripList.id);
+      const locations = await getLocationsByTripList(this.props.currentUser.id, this.props.currentTripList.id);
       this.setState({ locations })
     }
     else {
@@ -70,10 +77,11 @@ class TripListDetails extends React.Component {
 
   // Handle Change
   handleChange = (e) => {
+    console.log(e)
     const { name, value } = e.target;
     this.setState(prevState => ({
-      tripFormData: {
-        ...prevState.tripFormData,
+      locationFormData: {
+        ...prevState.locationFormData,
         [name]: value
       }
     }))
@@ -81,6 +89,7 @@ class TripListDetails extends React.Component {
 
   // Create Location
   createLocation = async () => {
+    debugger;
     const newLocation = await postLocation(this.props.currentTripList.id, this.state.tripListFormData);
     this.setState(prevState => ({
       locations: [...prevState.locations, newLocation]
@@ -109,7 +118,7 @@ class TripListDetails extends React.Component {
   render() {
     // debugger;
     const { currentTripList } = this.props;
-    const { locations } = this.state;
+    const { locations, showModal } = this.state;
     console.log(locations)
 
     return (
@@ -126,15 +135,15 @@ class TripListDetails extends React.Component {
               <p>{currentTripList.description}</p>
               <h4>Travel Date: {moment(new Date(currentTripList.travel_date)).format('MM/DD/YYYY')}</h4>
               <CreateLocationForm
-                show={this.state.show}
+                showModal={showModal}
                 handleClose={this.hideModal}
                 createLocation={this.createLocation}
                 handleChange={this.handleChange}
-                locationFormData={this.state.tripFormData}
+                locationFormData={this.state.locationFormData}
                 currentTripList={currentTripList}
               />
               <div className='image-container'>
-                <img className='action-image' src={travelIcon} onClick={this.showModal} alt="edit" />
+                <img className='action-image' src={travelIcon} alt="add-location" onClick={this.showModal} />
                 <Link to={`/update_tripList/${currentTripList.id}`}>
                   <img className='action-image' src={editIcon} alt="edit" />
                 </Link>
@@ -146,7 +155,7 @@ class TripListDetails extends React.Component {
             </div>
 
             <div id='locations-container'>
-              { 
+              {
                 locations.map(location => (
                   <div className='location'>
                     <img className='location-image' src={location.image_link} alt="location-image" />
@@ -160,8 +169,8 @@ class TripListDetails extends React.Component {
                       <h2 className='location-place'>{locations.place}</h2>
                       <div id='trip-button-group'>
 
-                        <button className='three-buttons' type='button' onClick={() => // show
-                          this.showLocationDetails(location.id)}>View</button>
+                        {/* <button className='three-buttons' type='button' onClick={() => // Create Location
+                          this.showLocationDetails(location.id)}>New</button> */}
 
                         <button className='three-buttons' type='button' onClick={() => // update 
                           this.showModalUpdate(location.id)}>Update</button>

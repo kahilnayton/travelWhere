@@ -3,16 +3,15 @@ import { Link } from 'react-router-dom';
 
 export default function CreateLocationForm(props) {
   console.log(props, 'create location form')
-  const { show, handleClose, handleFormData, currentTripList, handleChange, locationFormData } = props;
-  const showHideClassName = show ? 'modal display-block' : 'modal display-none';
+  const showHideClassName = props.showModal ? 'modal display-block' : 'modal display-none';
   return (
     <div className={showHideClassName}>
-        {
-          locationFormData === !undefined &&
-      
+      {
+        props.showModal && // bulean shortcircuit
+
         <form className='modal-main' onSubmit={(e) => {
           e.preventDefault();
-          props.createLocation(currentTripList.id, locationFormData);
+          props.createLocation(props.currentTripList.id, props.locationFormData);
         }} >
           <Link to='/'>
             <button className='back'>X</button>
@@ -23,42 +22,42 @@ export default function CreateLocationForm(props) {
             type="text"
             name='place'
             id='place'
-            value={locationFormData.place}
-            onChange={handleChange}
+            value={props.locationFormData.place}
+            onChange={props.handleChange}
           />
           <label htmlFor="address">Address</label>
           <input
             type="text"
             name='address'
             id='address'
-            value={locationFormData.address}
-            onChange={handleChange}
+            value={props.locationFormData.address}
+            onChange={props.handleChange}
           />
           <label htmlFor="departure_date">Departure Date</label>
           <input
             type="date"
             name='departure_date'
             id='departure_date'
-            value={locationFormData.departure_date}
-            onChange={handleChange}
+            value={props.locationFormData.departure_date}
+            onChange={props.handleChange}
           />
           <label htmlFor="return_date">Return Date</label>
           <input
             type="date"
             name='return_date'
             id='return_date'
-            value={locationFormData.return_date}
-            onChange={handleChange}
+            value={props.locationFormData.return_date}
+            onChange={props.handleChange}
           />
           <label htmlFor="image_link">Image link</label>
           <input
             type="text"
             name='image_link'
             id='image_link'
-            value={locationFormData.image_link}
-            onChange={handleChange}
+            value={props.locationFormData.image_link}
+            onChange={props.handleChange}
           />
-          <button className='location-button' onClick={handleClose}>Add Location</button>
+          <button className='location-button' onClick={props.handleClose}>Add Location</button>
 
         </form>
       }

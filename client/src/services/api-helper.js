@@ -35,7 +35,6 @@ export const verifyUser = async () => {
   return false;
 };
 
-
 // ******* TripsLists *************
 
 // Trip List  - get all lists
@@ -48,17 +47,15 @@ export const getTripListsByUser = async userId => {
   }
 };
 
-
 export const postTripListsByUser = async (userId, tripListData) => {
   const resp = await api.post(`/users/${userId}/triplists`, tripListData);
   return resp.data.triplists;
 };
 
 // Create a trip list
-export const postTripList = async (userId,data) => {
+export const postTripList = async (userId, data) => {
   try {
-    debugger;
-    const resp = await api.post(`/users/${userId}/triplists`,data);
+    const resp = await api.post(`/users/${userId}/triplists`, data);
     return resp.data.triplist;
   } catch (err) {
     return { error: "Unable to retrieve Trips" };
@@ -66,7 +63,7 @@ export const postTripList = async (userId,data) => {
 };
 
 // current trip list id
-export const currentTripListId = async (userId,id) => {
+export const currentTripListId = async (userId, id) => {
   try {
     const resp = await api.get(`/users/${userId}/triplists/${id}`);
     return resp.data.triplists.id;
@@ -76,36 +73,43 @@ export const currentTripListId = async (userId,id) => {
 };
 
 // Get location by list details
-export const getLocationsByTripList = async (userId,tripListId) => {
+export const getLocationsByTripList = async (userId, tripListId) => {
   try {
     const resp = await api.get(
-      `users/${userId}/triplists/${tripListId}/locations`);
+      `users/${userId}/triplists/${tripListId}/locations`
+    );
     return resp.data.locations; // returns the trip list details
   } catch (err) {
     return { error: "Unable to retrieve locations" };
   }
 };
 
-
 // Update trip list
-export const putTripList = async (userId ,id, tripListData) => {
+export const putTripList = async (userId, id, tripListData) => {
   const resp = await api.put(`/users/${userId}/triplists/${id}`, tripListData);
   return resp.data.triplist;
 };
 
 // Delete a trip list
-export const deleteTripList = async (userId,id) => {
+export const deleteTripList = async (userId, id) => {
   const resp = await api.delete(`/users/${userId}/triplists/${id}`);
   return resp.data;
 };
 
+// ***** locations ******
+
 // Create location
 export const postLocation = async (tripListId, locationData) => {
-  const resp = await api.post(
-    `./locationlist/${tripListId}/locations`,
-    locationData
-  );
-  return resp.data.location;
+  debugger;
+  try {
+    const resp = await api.post(
+      `/locationlist/${tripListId}/locations`,
+      locationData
+    );
+    return resp.data;
+  } catch (err) {
+    return { error: "Unable to create location" };
+  }
 };
 
 // Update location - put
